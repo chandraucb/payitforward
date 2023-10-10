@@ -1,6 +1,6 @@
 const { Types } = require("mongoose");
-
 const { Matchup, Tech, User } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
