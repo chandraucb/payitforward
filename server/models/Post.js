@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const postSchema = new Schema({
     caption: {
         type: String,
@@ -10,7 +11,7 @@ const postSchema = new Schema({
         default: Date.now,
     },
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
     },
