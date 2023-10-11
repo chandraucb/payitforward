@@ -11,19 +11,18 @@ const organizationSchema = new Schema({
     },
     address: {
         type: String,
-        required: true
+        required: false
+    },
+    link: {
+        type: String,
+        required: false
     },
     goal: {
         type: String,
-        required: true
-    },
-    sponsor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        required: false
     },
     contactInfo: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     }
