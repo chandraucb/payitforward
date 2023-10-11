@@ -30,4 +30,13 @@ module.exports = {
 
     res.status(200).json(organization);
   },
+  async updateOrganization({ params }, res) {
+    const organization = await Organization.findOneAndUpdate({ _id: params.id }, {params.organization});
+
+    if (!organization) {
+      return res.status(400).json({ message: 'Your Organization has been updated' });
+    }
+
+    res.status(200).json(organization);
+  },
 };
