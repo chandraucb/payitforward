@@ -3,7 +3,27 @@
         "name": "The Salvation Army",
         "description": "The Salvation Army, an international movement, is an evangelical part of the universal Christian church. Its message is based on the Bible.Its ministry is motivated by the love of God.Its mission is to preach the gospel of Jesus Christ and to meet human needs inHis name without discrimination.",
         "address": "The Salvation Army, 120 W. 14th St., New York, NY 10011",
-        "link": "http://www.salvationarmyusa.org/usn/www_usn_2.nsf",
-        "contactInfo": ""  
+        "link": "http://www.salvationarmyusa.org/usn/www_usn_2.nsf"  
+    },
+    {
+        "name": "The Art of Living Foundation",
+        "description": "One of the largest global non-profit organizations, with a goal of creating a violence-free and stress-free society.",
+        "address": "2401 N 15th St NW, Washington DC 20009, USA",
+        "link": "https://www.artofliving.org/us-en"
+    },
+    {
+        "name": "The Humane Society",
+        "description": "The Humane Society of the United States is the nation's largest and most effective animal protection organization,Humane Society works around the globe to promote the human-animal bond and confront animal cruelty in all its forms.",
+        "link": "https://www.humanesociety.org"
+    },
+    {
+        "name": "YMCA of the USA",
+        "description": "The YMCA is the leading nonprofit committed to strengthening individuals and communities across the country. At the Y, we're here to help you find your “why”, your greater sense of purpose, by connecting you with opportunities to improve your health, support young people, make new friends and contribute to a stronger, more cohesive community for all.",
+        "link": "https://www.ymca.org"
+    },
+    {
+        "name": "The American Heart Association",
+        "description": "The nation's oldest and largest voluntary organization dedicated to fighting heart disease and stroke. A shared focus on cardiovascular health unites our more than 35 million volunteers and supporters as well as our more than 2,900 employees.",
+        "link": "https://www.heart.org/en/"
     }
 ]

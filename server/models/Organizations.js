@@ -24,7 +24,7 @@ const organizationSchema = new Schema({
     contactInfo: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: false
     }
 });
 
