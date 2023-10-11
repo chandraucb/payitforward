@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Spend a day with the elderly!",
+        "description": "Come down to the local nursing home and spend a day with the elderly! Includes arts and crafts, bingo, free food, and more!",
+        "address": "1234 Main St, San Francisco, CA 94122",
+        "date": "10-15-2023 12:00:00",
+        "sponsor": ""     
+    },
+    {
+        "name": "Come and clean the beach!",
+        "description": "This weekend come down and join us at Sea Cliff beach to help clean and restore the area! Food and drinks will be provided! Event starts at 12:00pm!",
+        "address": "543 Sea Cliff Ave, San Francisco, CA 94122",
+        "date": "10-23-2023 12:00:00",
+        "sponsor": ""
+    },
+    {
+        "name": "Fundraiser for those affected by the recent wildfires",
+        "description": "The recent fires have placed a lot of stress on local families and so its time to band together to help those in need. All proceeds will go to the families affected by the fires. Contact sponsor for more info.",
+        "goal": "$10,000",
+        "sponsor": ""
+    }
+]
