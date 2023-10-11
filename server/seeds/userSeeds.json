@@ -1,0 +1,27 @@
+[
+  {
+    "username": "Chandra Mohan",
+    "email": "chandra@gmail.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Carlos Martinez",
+    "email": "carlos@gmail.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Kevin Gagante",
+    "email": "kevin@gmail.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Oksana Tatsyak",
+    "email": "oksana@gmail.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Junel Balbin",
+    "email": "junel@gmail.com",
+    "password": "password12345"
+  }
+]
