@@ -13,6 +13,10 @@ const projectSchema = new Schema({
         type: String,
         required: false
     },
+    date: {
+        type: Date,
+        required: false
+    },
     goal: {
         type: String,
         required: false
