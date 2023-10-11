@@ -2,7 +2,7 @@ const db = require('../config/connection');
 const { User, Organization, Project, Post } = require('../models');
 const userSeeds = require('./userSeeds.json');
 
-const organizationData = require('../models/Organizations');
+const organizationData = require('./organizationSeeds.json');
 
 db.once('open', async () => {
   await User.deleteMany({});
@@ -17,8 +17,5 @@ db.once('open', async () => {
   //   const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
   // }
 
-  const technologies = await Tech.insertMany(techData);
-
-  console.log('Technologies seeded!');
   process.exit(0);
 });
