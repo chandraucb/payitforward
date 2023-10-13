@@ -1,9 +1,9 @@
 import React from 'react';
-import profiles from '../../server/seeds/profileSeeds.json';
+//import profiles from '../../server/seeds/profileSeeds.json';
 
 class Profile extends React.Component {
   render() {
-    const profileData = profiles[0]; // If we want to display the first profile or we can change it to display all profile?
+    let profileData = {} // If we want to display the first profile or we can change it to display all profile?
 
     return (
       <div>
