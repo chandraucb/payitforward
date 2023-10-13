@@ -8,6 +8,13 @@ type User {
     email: String
     password: String
 }
+type Post {
+    _id: ID
+    caption: String
+    date: String
+    user: User
+}
+
 
 type Tech {
     _id: ID
@@ -29,10 +36,11 @@ type Auth {
 
 type Query {
     users: [User]
-    user(username: String!): User
-    matchups: [Matchup]
+    user: User
+    matchups(tech1: String!, tech2: String!): [Matchup]
     singleMatchup(id: ID!): Matchup
     techs: [Tech]
+    posts: [Post]
 }
 
 type Mutation {
@@ -40,6 +48,7 @@ type Mutation {
     login(email: String!, password: String!): Auth    
     addVote(id: ID!, techNum: Int!): Matchup
     addMatchup(tech1: String!, tech2: String!): Matchup
+    addPost(caption: String!, date: String!): Post
 }
 `;
 

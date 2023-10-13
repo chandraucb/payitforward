@@ -3,17 +3,19 @@ const { Matchup, Tech, User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
+    //get routes
     Query: {
         users: async () => {
             return User.find();
         },
-        user: async (parent, { username }) => {
-            return User.findOne({ username });
+        user: async (parent, arg, context) => {
+            return User.findOne({ username: context.user.username });
         },
         matchups: async (parent, args, context) => {
-            const matchups = await Matchup.find();
-
-            return matchups;
+            if (context.user) {
+                const matchups = await Matchup.find();
+                return matchups;
+            } 
         },
         singleMatchup: async (parent, { id }) => {
             const matchup = await Matchup.findOne({ _id: new Types.ObjectId(id) });
@@ -25,6 +27,12 @@ const resolvers = {
 
             return techs;
         },
+        posts: async () => {
+            const posts = await Post.find().populate('user');
+
+            return posts;
+        },
+        
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
@@ -49,7 +57,27 @@ const resolvers = {
         
             return { token, user };
         },
+        addPost : async (parent, { caption, date }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+            const post = await Post.create({
+                caption,
+                date,
+                user_id: context.user._id
+            });
+
+            if (!post) {
+                throw new Error('Unable to create post');
+            }
+
+            return post;
+        },
+
         addVote: async (parent, { id, techNum }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
             const vote = await Matchup.findOneAndUpdate(
                 { _id: new Types.ObjectId(id) },
                 { $inc: { [`tech${techNum}_votes`]: 1 } },
@@ -62,7 +90,7 @@ const resolvers = {
           
             return vote;
         },
-        addMatchup: async (parent, { tech1, tech2})  => {
+        addMatchup: async (parent, { tech1, tech2 })  => {
             const matchup = await Matchup.create({
                 tech1,
                 tech2,
