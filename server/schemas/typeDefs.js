@@ -8,20 +8,29 @@ type User {
     email: String
     password: String
 }
-
-type Tech {
+type Post {
+    _id: ID
+    caption: String
+    date: String
+    user: User
+}
+type Project {
     _id: ID
     name: String
+    description: String
+    address: String
+    goal: String
+    sponsor: User
 }
-
-type Matchup {
+type Organization {
     _id: ID
-    tech1: String
-    tech2: String
-    tech1_votes: Int
-    tech2_votes: Int
+    name: String
+    description: String
+    address: String
+    link: String
+    goal: String
+    contactInfo: User
 }
-
 type Auth {
     token: ID!
     user: User
@@ -29,17 +38,27 @@ type Auth {
 
 type Query {
     users: [User]
-    user(username: String!): User
-    matchups: [Matchup]
-    singleMatchup(id: ID!): Matchup
-    techs: [Tech]
+    user: User
+    posts: [Post]
+    post: Post
+    projects: [Project]
+    project: Project
+    organizations: [Organization]
+    organization: Organization
 }
 
 type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth    
-    addVote(id: ID!, techNum: Int!): Matchup
-    addMatchup(tech1: String!, tech2: String!): Matchup
+    login(email: String!, password: String!): Auth
+    addPost(caption: String!, date: String!): Post
+    updatePost(id: ID!): Post
+    deletePost(id: ID!): Post
+    addProject(name: String!, description: String!, address: String!, goal: String!): Project
+    updateProject(id: ID!): Project
+    deleteProject(id: ID!): Project
+    addOrganization(name: String!, description: String!, address: String!, link: String!, goal: String!): Organization
+    updateOrganization(id: ID!): Organization
+    deleteOrganization(id: ID!): Organization
 }
 `;
 
