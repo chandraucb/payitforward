@@ -11,7 +11,7 @@ const profileSchema = new Schema({
         minlength: [10, 'Must be at least 10 characters long.'],
         maxlength: [2000, 'Cannot exceed 2000 characters long.']
     },
-    projets: {
+    projects: {
         type: String,
         required: true,
     },
