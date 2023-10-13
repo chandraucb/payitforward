@@ -13,11 +13,6 @@ const eventSchema = new Schema({
         type: Date,
         required: true
     },
-    sponsor: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
 })
 
 const Events = model('Events', eventSchema);
