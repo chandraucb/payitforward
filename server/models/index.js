@@ -2,6 +2,6 @@ const User = require('./User');
 const Post = require('./Post');
 const Organization = require('./Organization');
 const Project = require('./Project');
-const Profile = require('./Profile');
+const Events = require('./Events');
 
-module.exports = { User, Post, Organization, Project, Profile };
+module.exports = { User, Post, Organization, Project, Events };

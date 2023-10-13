@@ -14,8 +14,9 @@ const projectSchema = new Schema({
         required: false
     },
     date: {
-        type: Date,
-        required: false
+        type: Schema.Types.ObjectId,
+        ref: 'Events',
+        required: true
     },
     goal: {
         type: String,
