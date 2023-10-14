@@ -13,10 +13,10 @@ const projectSchema = new Schema({
         type: String,
         required: false
     },
-    date: {
+    schedule: {
         type: Schema.Types.ObjectId,
         ref: 'Events',
-        required: true
+        required: false
     },
     goal: {
         type: String,
@@ -25,7 +25,12 @@ const projectSchema = new Schema({
     sponsor: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: false
+    },
+    volunteer: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: false
     }
 });
 
