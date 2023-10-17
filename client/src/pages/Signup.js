@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Container } from '@material-ui/core';
+import backgroundImage from '../images/background.jpeg';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10px',
   },
   container: {
-    backgroundImage: '',
+    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
