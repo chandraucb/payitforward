@@ -1,12 +1,31 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import backgroundImage from '../images/background.jpeg';
 //import profiles from '../../server/seeds/profileSeeds.json';
 
-class Profile extends React.Component {
-  render() {
-    let profileData = {} // If we want to display the first profile or we can change it to display all profile?
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '30%',
+  },
+  container: {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}));
 
-    return (
-      <div>
+const Profile = ({ profileData }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.container}>
+      <div className={classes.root}>
         <h1>Profile</h1>
         <div>
           <img
@@ -20,8 +39,8 @@ class Profile extends React.Component {
           <p>Organizations: {profileData.organizations}</p>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Profile;
