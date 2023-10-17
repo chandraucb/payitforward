@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button, Typography } from '@material-ui/core';
+import { TextField, Button, Typography, Container } from '@material-ui/core';
+import backgroundImage from '../images/background.jpeg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '30%',
   },
   form: {
-    width: '50%',
+    width: '100%',
     margin: '20px 0 20px',
   },
   submit: {
@@ -19,6 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     marginTop: '10px',
+  },
+  container: {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundColor: '#ffffff',// not working!!!!
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 }));
 
@@ -37,6 +47,8 @@ const Login = () => {
   };
 
   return (
+    <div className={classes.container}>
+    <Container component="main" maxWidth="xs">
     <div className={classes.root}>
       <Typography component="h1" variant="h5">
         Login
@@ -81,6 +93,8 @@ const Login = () => {
           Don't have an account? Sign up here.
         </Link>
       </form>
+      </div>
+      </Container>
     </div>
   );
 };
