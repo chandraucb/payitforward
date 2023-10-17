@@ -1,40 +1,81 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Button } from '@material-ui/core';
 import Auth from '../../utils/auth';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  appBar: {
+    backgroundColor: '#1976d2',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    padding: '0 15px',
+  },
+  toolbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    margin: '0 auto',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: '1.5rem',
+    textDecoration: 'none',
+    color: '#fff',
+  },
+  link: {
+    color: '#fff',
+    textDecoration: 'none',
+    marginLeft: theme.spacing(2),
+  },
+}));
+
 const Header = () => {
+  const classes = useStyles();
+
   const logout = event => {
     event.preventDefault();
     Auth.logout();
   }
+
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <Link className="text-light" to="/">
-          <h1 className="m-0">Tech Thoughts</h1>
-        </Link>
-        {Auth.loggedIn() ? (
-          <div>
-            <Link className="text-light" to="/Profile">
-              <h1 className="m-0">User</h1>
-            </Link>
-            <Link className="text-light" to="/Organization">
-              <h1 className="m-0">Organization</h1>
-            </Link>
-            <div className="text-light m-0" onClick={logout} to="/Profile">
-              logout
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
+          <Link to="/" className={classes.title}>
+            Pay it Forward
+          </Link>
+          {Auth.loggedIn() ? (
+            <div>
+              <Link to="/Profile" className={classes.link}>
+                User
+              </Link>
+              <Link to="/Organization" className={classes.link}>
+                Organization
+              </Link>
+              <Button color="inherit" onClick={logout}>
+                Logout
+              </Button>
             </div>
-          </div>) : (
-          <div>
-            <Link className="text-light" to="/login">
-              <h1 className="m-0">Login</h1>
-            </Link>
-            <Link className="text-light" to="/Signup">
-              <h1 className="m-0">Sign up</h1>
-            </Link>
-          </div>)}
-      </div>
-    </header >
+          ) : (
+            <div>
+              <Link to="/login" className={classes.link}>
+                Login
+              </Link>
+              <Link to="/Signup" className={classes.link}>
+                Sign up
+              </Link>
+            </div>
+          )}
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 
