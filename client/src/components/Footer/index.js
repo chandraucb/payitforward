@@ -23,9 +23,18 @@ const Footer = () => {
             aria-label="heart"
             aria-hidden="false"
           >
+                <a
+          href="https://github.com/chandraucb/payitforward"
+          target="_blank"
+          rel="noopener noreferrer">
+          <div className="icon-container">
+            <img src={githubLogo} alt="GitHub logo" className="overlay" />
+            <img src={githubLogoOrange} alt="GitHub logo" />
+          </div>
+        </a>
             ❤️
           </span>{' '}
-          by the Tech Thoughts team.
+          by Pay it Forward team.
         </h4>
       </div>
     </footer>
