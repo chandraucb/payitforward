@@ -25,7 +25,14 @@ const organizationSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: false
-    }
+    },
+    events: [
+        {
+            type: Schema.Types.ObjectId, 
+            ref: 'Events',
+            
+        }
+    ]
 });
 
 const Organization = model('Organization', organizationSchema);
