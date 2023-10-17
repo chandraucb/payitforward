@@ -10,10 +10,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: '30%',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderRadius: '10px',
   },
   form: {
     width: '100%',
-    margin: '20px 0 20px',
+    margin: '0px 0 20px',
+    padding: '25px',
   },
   submit: {
     margin: '20px 0 20px',
@@ -24,11 +27,13 @@ const useStyles = makeStyles((theme) => ({
   container: {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
-    backgroundColor: '#ffffff',// not working!!!!
     height: '100vh',
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
+  },
+  title: {
+    marginTop: '15px',
   },
 }));
 
@@ -50,7 +55,7 @@ const Login = () => {
     <div className={classes.container}>
     <Container component="main" maxWidth="xs">
     <div className={classes.root}>
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" className={classes.title}>
         Login
       </Typography>
       <form className={classes.form} onSubmit={handleFormSubmit}>
