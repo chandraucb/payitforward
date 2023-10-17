@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
-    backgroundColor: '##000', // Add your desired color value here
+    backgroundColor: '#ffffff',// not working!!!!
     height: '100vh',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
 }));
