@@ -48,11 +48,11 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home />}
+              element={<Login />}
             />
             <Route
-              path="/login"
-              element={<Login />}
+              path="/Home"
+              element={<Home />}
             />
             <Route
               path="/Signup"
