@@ -1,191 +1,223 @@
-const { Types } = require("mongoose");
-const { User, Post, Project, Organization } = require('../models');
-const { signToken } = require('../utils/auth');
+const { Types } = require('mongoose')
+const { User, Post, Project, Organization, Events } = require('../models')
+const { signToken } = require('../utils/auth')
 
 const resolvers = {
-    //get routes
-    Query: {
-        users: async () => {
-            return User.find();
-        },
-        user: async (parent, arg, context) => {
-            return User.findOne({ username: context.user.username });
-        },
-        posts: async () => {
-            const posts = await Post.find().populate('user');
-
-            return posts;
-        },
-        post: async (parent, { id }) => {
-            const post = await Post.findOne(
-                { _id: new Types.ObjectId(id) }).populate('user');
-                return post;
-        },
-        //get all projects
-        projects: async () => {
-            const projects = await Project.find().populate('sponsor');
-
-            return projects;
-        },
-        //get one project
-        project: async (parent, { id }) => {
-            const project = await Project.findOne(
-                { _id: new Types.ObjectId(id) }).populate('sponsor');
-                return project;
-        },
-        //get all organizations
-        organizations: async () => {
-            const organizations = await Organization.find().populate('contactInfo');
-
-            return organizations;
-        },
-        //get one organization
-        organization: async (parent, { id }) => {
-            const organization = await Organization.findOne(
-                { _id: new Types.ObjectId(id) }).populate('contactInfo');
-                return organization;
-        }
+  //get routes
+  Query: {
+    users: async () => {
+      return User.find()
     },
-    Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
-            const token = signToken(user);
-            return { token, user };
-        },
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
-        
-            if (!user) {
-                throw new AuthenticationError('No user found with this email address');
-            }
-        
-            const correctPw = await user.isCorrectPassword(password);
-        
-            if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
-            }
-        
-            const token = signToken(user);
-        
-            return { token, user };
-        },
-        //add a post
-        addPost: async (parent, { caption, date }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const post = await Post.create({
-                caption,
-                date,
-                user_id: context.user._id
-            });
+    user: async (parent, arg, context) => {
+      return User.findOne({ username: context.user.username })
+    },
+    eventsByUser:async (parent, arg, context) => {
+      return User.findOne({ username: context.user.username }).populate(
+        'events'
+      )
+    },
+    eventsByOrganization: async (parent, { name }) => {
+      return Organization.find({ name }).populate('events')
+    },
+    posts: async () => {
+      const posts = await Post.find().populate('user')
 
-            if (!post) {
-                throw new Error('Unable to create post');
-            }
+      return posts
+    },
+    post: async (parent, { id }) => {
+      const post = await Post.findOne({ _id: new Types.ObjectId(id) }).populate(
+        'user'
+      )
+      return post
+    },
+    //get all projects
+    projects: async () => {
+      const projects = await Project.find().populate('sponsor')
 
-            return post;
-        },
-        //update a post
-        updatePost: async (parent, { caption, date }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const post = await Post.findOneAndUpdate(
-                { _id: new Types.ObjectId(id) },
-                { $set: { caption, date } },
-                { new: true }
-            );
-        },
-        //delete a post
-        deletePost: async (parent, { id }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const post = await Post.findOneAndDelete(
-                { _id: new Types.ObjectId(id) }
-                );
-        },
-        //add a project
-        addProject: async (parent, { name, description, address, goal }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const project = await Project.create({
-                name,
-                description,
-                address,
-                goal,
-                sponsor: context.user._id
-            });
+      return projects
+    },
+    //get one project
+    project: async (parent, { id }) => {
+      const project = await Project.findOne({
+        _id: new Types.ObjectId(id)
+      }).populate('sponsor')
+      return project
+    },
+    //get all organizations
+    organizations: async () => {
+      const organizations = await Organization.find().populate('contactInfo')
 
-            if (!project) {
-                throw new Error('Unable to create project');
-            }
+      return organizations
+    },
+    //get one organization
+    organization: async (parent, { id }) => {
+      const organization = await Organization.findOne({
+        _id: new Types.ObjectId(id)
+      }).populate('contactInfo')
+      return organization
+    }
+  },
+  Mutation: {
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password })
+      const token = signToken(user)
+      return { token, user }
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email })
 
-            return project;
-        },
-        //update a project
-        updateProject: async (parent, { name, description, address, goal }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const project = await Project.findOneAndUpdate(
-                { _id: new Types.ObjectId(id) },
-                { $set: { name, description, address, goal } },
-                { new: true }
-            );
-        },
-        //delete a project
-        deleteProject: async (parent, { id }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const project = await Project.findOneAndDelete(
-                { _id: new Types.ObjectId(id) }
-                );
-        },
-        //add an organization
-        addOrganization: async (parent, { name, description, address, link, goal }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const organization = await Organization.create({
-                name,
-                description,
-                address,
-                link,
-                goal,
-                contactInfo: context.user._id
-            });
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address')
+      }
 
-            if (!organization) {
-                throw new Error('Unable to create organization');
-            }
+      const correctPw = await user.isCorrectPassword(password)
 
-            return organization;
-        },
-        //update an organization
-        updateOrganization: async (parent, { name, description, address, link, goal }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const organization = await Organization.findOneAndUpdate(
-                { _id: new Types.ObjectId(id) },
-                { $set: { name, description, address, link, goal } },
-                { new: true }
-            );
-        },
-        //delete an organization
-        deleteOrganization: async (parent, { id }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You need to be logged in!');
-            }
-            const organization = await Organization.findOneAndDelete(
-                { _id: new Types.ObjectId(id) }
-                );
-        }
-        /*
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials')
+      }
+
+      const token = signToken(user)
+
+      return { token, user }
+    },
+    //add a post
+    addPost: async (parent, { caption, date }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const post = await Post.create({
+        caption,
+        date,
+        user_id: context.user._id
+      })
+
+      if (!post) {
+        throw new Error('Unable to create post')
+      }
+
+      return post
+    },
+    //update a post
+    updatePost: async (parent, { caption, date }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const post = await Post.findOneAndUpdate(
+        { _id: new Types.ObjectId(id) },
+        { $set: { caption, date } },
+        { new: true }
+      )
+    },
+    //delete a post
+    deletePost: async (parent, { id }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const post = await Post.findOneAndDelete({ _id: new Types.ObjectId(id) })
+    },
+    //add a project
+    addProject: async (
+      parent,
+      { name, description, address, goal },
+      context
+    ) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const project = await Project.create({
+        name,
+        description,
+        address,
+        goal,
+        sponsor: context.user._id
+      })
+
+      if (!project) {
+        throw new Error('Unable to create project')
+      }
+
+      return project
+    },
+    createEventByUser: async (parent, {title, start, end}, context)=>{
+        const event= await Event.create({title, start, end})
+        return await User.findOneAndUpdate({_id: event.user._id} , {$addToSet: {events: event}})
+    },
+    // createEventByOrganization: async (parent, {title, start, end, name})=>{},
+
+    //update a project
+    
+    updateProject: async (
+      parent,
+      { name, description, address, goal },
+      context
+    ) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const project = await Project.findOneAndUpdate(
+        { _id: new Types.ObjectId(id) },
+        { $set: { name, description, address, goal } },
+        { new: true }
+      )
+    },
+    //delete a project
+    deleteProject: async (parent, { id }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const project = await Project.findOneAndDelete({
+        _id: new Types.ObjectId(id)
+      })
+    },
+    //add an organization
+    addOrganization: async (
+      parent,
+      { name, description, address, link, goal },
+      context
+    ) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const organization = await Organization.create({
+        name,
+        description,
+        address,
+        link,
+        goal,
+        contactInfo: context.user._id
+      })
+
+      if (!organization) {
+        throw new Error('Unable to create organization')
+      }
+
+      return organization
+    },
+    //update an organization
+    updateOrganization: async (
+      parent,
+      { name, description, address, link, goal },
+      context
+    ) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const organization = await Organization.findOneAndUpdate(
+        { _id: new Types.ObjectId(id) },
+        { $set: { name, description, address, link, goal } },
+        { new: true }
+      )
+    },
+    //delete an organization
+    deleteOrganization: async (parent, { id }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!')
+      }
+      const organization = await Organization.findOneAndDelete({
+        _id: new Types.ObjectId(id)
+      })
+    }
+    /*
         addVote: async (parent, { id, techNum }, context) => {
             if (!context.user) {
                 throw new AuthenticationError('You need to be logged in!');
@@ -214,7 +246,7 @@ const resolvers = {
 
             return matchup;
         }*/
-    },
-};
+  }
+}
 
-module.exports = resolvers;
+module.exports = resolvers
