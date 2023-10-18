@@ -15,6 +15,8 @@ import Organization from './pages/Home';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Auth from './utils/auth';
+import Footer from './components/Footer/index';
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -75,6 +77,7 @@ function App() {
             />
             <Route path="*" element={<Home />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

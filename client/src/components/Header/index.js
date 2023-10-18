@@ -3,13 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 import Auth from '../../utils/auth';
+import Logo from '../../images/pay_it_logo-transformed.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   appBar: {
-    backgroundColor: '#1976d2',
+    backgroundColor: '#347068',
     position: 'fixed',
     top: 0,
     left: 0,
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     margin: '0 auto',
   },
-  title: {
+  logo: {
     fontWeight: 'bold',
     fontSize: '1.5rem',
     textDecoration: 'none',
@@ -54,8 +55,8 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Link to="/" className={classes.title}>
-            Pay it Forward
+          <Link to="/" className={classes.logo}>
+            <img src={Logo} alt="Pay it Forward" style={{ width: 'auto', height: '68px' }} />
           </Link>
           {isLoggedIn ? (
             <div>

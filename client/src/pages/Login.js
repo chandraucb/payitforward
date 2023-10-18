@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: '20px 0 20px',
+    backgroundColor: '#347068',
   },
   link: {
     marginTop: '10px',
