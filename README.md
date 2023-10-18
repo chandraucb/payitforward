@@ -35,9 +35,9 @@ Then it is posted and other users can communicate and respond in the chat
 ```
 
 ## Installation:
-* `git clone git@github.com:chandraucb/payitforward.git`
-* 
-* 
+* `git clone git@github.com:chandraucb/payitforward.git to clone the repository`
+* `npm install to install all dependencies`
+* `npm start to start the application `
 
 ## Usage:
 * [Deployed Heroku: Pay it Forward](LINK HERE)
@@ -61,8 +61,8 @@ ADD 2 IMAGES HERE.
 * Google search & Youtube videos.
 * ChatGpt for troubleshooting.
 * TA: Kyle Vance.
-* 
-* 
+* Material UI documentation.
+* UCB Tutors. 
 
 ## Coded With:
 * Material UI.
@@ -73,7 +73,7 @@ ADD 2 IMAGES HERE.
 * Node.js.
 * VS Code.
 * Heroku.
-* 
+* Emotion CSS.
 * 
 
 ## Contributing:
@@ -82,7 +82,7 @@ ADD 2 IMAGES HERE.
 ## Project Links:
 * [Deployed Heroku](LINK HERE)
 * [Github Repository](https://github.com/chandraucb/payitforward)
-* [Presentation](LINK HERE)
+* [Presentation](https://docs.google.com/presentation/d/1pO2XIUwBA6MG65ih-0xgYYChhczAM1CooJPCOSsAeq0/edit?usp=sharing)
 
 ## License:
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
