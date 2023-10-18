@@ -5,11 +5,18 @@ import { Typography, Card, CardContent, Avatar, Grid } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: '20px',
+    paddingTop: '470%',
+    // this was to display the project info on the page properly
+    // need to fix it so it displays properly
   },
   card: {
     backgroundColor: '#f5f5f5',
     padding: '10px',
     margin: '10px',
+  },
+  header: {
+    textAlign: 'center',
+    marginBottom: '20px',
   },
   avatar: {
     width: '100px',
@@ -32,95 +39,305 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const users = [
-  {
-    id: 1,
-    username: 'Oksana Tatsyak',
-    events: [
-        {
-          id: 1,
-          title: 'Spend a day with the elderly!',
-          start: '10-15-2023 12:00:00',
-          end: '10-15-2023 14:00:0',
-        },
-        {
-          id: 2,
-          title: 'Spend a day with the elderly!',
-          start: '10-15-2023 12:00:00',
-          eventEnd: '10-15-2023 14:00:0',
-        },
-      ],
-    email: 'oksana@gmail.com',
-  },
-  {
-    id: 2,
-    name: 'Kevin Gagante',
-    email: 'kevin@gmail.com',
-    events: [
-        {
-            id: 1,
-            title: 'Spend a day with the elderly!',
-            start: '10-15-2023 12:00:00',
-            eventEnd: '10-15-2023 14:00:0',
-          },
-          {
-            id: 2,
-            title: 'Spend a day with the elderly!',
-            start: '10-15-2023 12:00:00',
-            eventEnd: '10-15-2023 14:00:0',
-          },
-    ],
-  },
-];
 
 const Project = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Typography variant="h4" component="h1" >
-        Users
-      </Typography>
-      {users.map((user) => (
-        <Card key={user.id} className={classes.card}>
+      {projects.map((project) => (
+        <Card key={project._id} className={classes.card}>
           <CardContent>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={4}>
-                <Avatar alt={user.name} src={user.avatar} className={classes.avatar} />
-              </Grid>
-              <Grid item xs={12} sm={8}>
-                <Typography className={classes.title} variant="h5" component="h2">
-                  {user.name}
-                </Typography>
-                <Typography className={classes.subtitle} color="textSecondary">
-                  Email:
-                </Typography>
-                <Typography className={classes.content} variant="body2" component="p">
-                  {user.email}
-                </Typography>
-                <Typography className={classes.subtitle} color="textSecondary">
-                  Events:
-                </Typography>
-                {user.events.map((event) => (
-                  <div key={event.id}>
-                    <Typography className={classes.content} variant="body2" component="p">
-                      {event.title}
-                    </Typography>
-                    <Typography className={classes.content} variant="body2" component="p">
-                      {event.eventStart}
-                    </Typography>
-                    <Typography className={classes.content} variant="body2" component="p">
-                      {event.eventEnd}
-                    </Typography>
-                  </div>
-                ))}
-              </Grid>
+            <Typography variant="h2" component="h2" className={classes.title}>
+              {project.name}
+            </Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Description:
+            </Typography>
+            <Typography variant="body1" className={classes.content}>
+              {project.description}
+            </Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Address:
+            </Typography>
+            <Typography variant="body1" className={classes.content}>
+              {project.address}
+            </Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Goal:
+            </Typography>
+            <Typography variant="body1" className={classes.content}>
+              {project.goal}
+            </Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Sponsors:
+            </Typography>
+            <Grid container spacing={2}>
+              {project.sponsors.map((sponsor) => (
+                <Grid item xs={12} sm={6} md={4} key={sponsor._id}>
+                  <Card className={classes.card}>
+                    <CardContent>
+                      <Avatar
+                        alt={sponsor.username}
+                        src={`https://i.pravatar.cc/150?u=${sponsor._id}`}
+                        className={classes.avatar}
+                      />
+                      <Typography variant="h6" component="h3" className={classes.title}>
+                        {sponsor.username}
+                      </Typography>
+                      <Typography variant="subtitle1" className={classes.subtitle}>
+                        Email:
+                      </Typography>
+                      <Typography variant="body1" className={classes.content}>
+                        {sponsor.email}
+                      </Typography>
+                      <Typography variant="subtitle1" className={classes.subtitle}>
+                        Sponsor Events:
+                      </Typography>
+                      <ul>
+                        {sponsor.events.map((event) => (
+                          <li key={event._id}>
+                            {event.title}
+                            <p>Start: {event.start}</p>
+                            <p>End: {event.end}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
             </Grid>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Volunteers:
+            </Typography>
+            <Grid container spacing={2}>
+              {project.volunteers.map((volunteer) => (
+                <Grid item xs={12} sm={6} md={4} key={volunteer._id}>
+                  <Card className={classes.card}>
+                    <CardContent>
+                      <Avatar
+                        alt={volunteer.username}
+                        src={`https://i.pravatar.cc/150?u=${volunteer._id}`}
+                        className={classes.avatar}
+                      />
+                      <Typography variant="h6" component="h3" className={classes.title}>
+                        {volunteer.username}
+                      </Typography>
+                      <Typography variant="subtitle1" className={classes.subtitle}>
+                        Email:
+                      </Typography>
+                      <Typography variant="body1" className={classes.content}>
+                        {volunteer.email}
+                      </Typography>
+                      <Typography variant="subtitle1" className={classes.subtitle}>
+                        Volunteer Events:
+                      </Typography>
+                      <ul>
+                        {volunteer.events.map((event) => (
+                          <li key={event._id}>
+                            {event.title}
+                            <p>Start: {event.start}</p>
+                            <p>End: {event.end}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Schedule:
+            </Typography>
+            <ul>
+              {project.schedule.map((event) => (
+                <li key={event._id}>
+                  {event.title}
+                  <p>Start: {event.start}</p>
+                  <p>End: {event.end}</p>
+                </li>
+              ))}
+            </ul>
           </CardContent>
         </Card>
       ))}
     </div>
   );
 };
+
+const projects = [
+  {
+    _id: 1,
+    name: "Project 1",
+    description: "Description of Project 1",
+    address: "123 Main St, City 1",
+    goal: "Goal of Project 1",
+    sponsors: [
+      {
+        _id: 1,
+        username: "SponsorUser1",
+        email: "sponsor1@example.com",
+        events: [
+          {
+            _id: 1,
+            title: "Sponsor Event 1",
+            start: "2023-10-15T08:00:00Z",
+            end: "2023-10-15T10:00:00Z",
+          },
+        ],
+      },
+      {
+        _id: 2,
+        username: "SponsorUser2",
+        email: "sponsor2@example.com",
+        events: [
+          {
+            _id: 2,
+            title: "Sponsor Event 2",
+            start: "2023-10-16T10:00:00Z",
+            end: "2023-10-16T12:00:00Z",
+          },
+        ],
+      },
+    ],
+    volunteers: [
+      {
+        _id: 3,
+        username: "VolunteerUser1",
+        email: "volunteer1@example.com",
+        events: [
+          {
+            _id: 3,
+            title: "Volunteer Event 1",
+            start: "2023-10-15T12:00:00Z",
+            end: "2023-10-15T14:00:00Z",
+          },
+        ],
+      },
+      {
+        _id: 4,
+        username: "VolunteerUser2",
+        email: "volunteer2@example.com",
+        events: [
+          {
+            _id: 4,
+            title: "Volunteer Event 2",
+            start: "2023-10-16T14:00:00Z",
+            end: "2023-10-16T16:00:00Z",
+          },
+        ],
+      },
+    ],
+    schedule: [
+      {
+        _id: 5,
+        event_id: "event1",
+        title: "Event 1",
+        start: "2023-10-15T12:00:00Z",
+        end: "2023-10-15T14:00:00Z",
+      },
+      {
+        _id: 6,
+        event_id: "event2",
+        title: "Event 2",
+        start: "2023-10-16T15:00:00Z",
+        end: "2023-10-16T17:00:00Z",
+      },
+    ],
+  },
+  {
+    _id: 2,
+    name: "Project 2",
+    description: "Description of Project 2",
+    address: "456 Elm St, City 2",
+    goal: "Goal of Project 2",
+    sponsors: [
+      {
+        _id: 7,
+        username: "SponsorUser3",
+        email: "sponsor3@example.com",
+        events: [
+          {
+            _id: 8,
+            title: "Sponsor Event 3",
+            start: "2023-11-15T10:00:00Z",
+            end: "2023-11-15T12:00:00Z",
+          },
+        ],
+      },
+    ],
+    volunteers: [
+      {
+        _id: 9,
+        username: "VolunteerUser3",
+        email: "volunteer3@example.com",
+        events: [
+          {
+            _id: 10,
+            title: "Volunteer Event 3",
+            start: "2023-11-15T12:00:00Z",
+            end: "2023-11-15T14:00:00Z",
+          },
+        ],
+      },
+    ],
+    schedule: [
+      {
+        _id: 11,
+        event_id: "event3",
+        title: "Event 3",
+        start: "2023-11-15T12:00:00Z",
+        end: "2023-11-15T14:00:00Z",
+      },
+    ],
+  },
+  {
+    _id: 3,
+    name: "Project 3",
+    description: "Description of Project 3",
+    address: "789 Oak St, City 3",
+    goal: "Goal of Project 3",
+    sponsors: [
+      {
+        _id: 7,
+        username: "SponsorUser3",
+        email: "sponsor3@example.com",
+        events: [
+          {
+            _id: 8,
+            title: "Sponsor Event 3",
+            start: "2023-11-15T10:00:00Z",
+            end: "2023-11-15T12:00:00Z",
+          },
+        ],
+      },
+    ],
+    volunteers: [
+      {
+        _id: 9,
+        username: "VolunteerUser3",
+        email: "volunteer3@example.com",
+        events: [
+          {
+            _id: 10,
+            title: "Volunteer Event 3",
+            start: "2023-11-15T12:00:00Z",
+            end: "2023-11-15T14:00:00Z",
+          },
+        ],
+      },
+    ],
+    schedule: [
+      {
+        _id: 11,
+        event_id: "event3",
+        title: "Event 3",
+        start: "2023-11-15T12:00:00Z",
+        end: "2023-11-15T14:00:00Z",
+      },
+    ],
+  },
+];
 
 export default Project;
