@@ -42,7 +42,7 @@ const User = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h4" component="h1" className={classes.header}>
+      <Typography variant="h1" component="h1" className={classes.header}>
         Users
       </Typography>
       {users.map((user) => (
@@ -54,7 +54,7 @@ const User = () => {
                 <Avatar alt={user.username} src={`https://i.pravatar.cc/150?img=${user.id}`} className={classes.avatar} />
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Typography className={classes.title} variant="h6" component="h2">
+                <Typography className={classes.title} variant="h2" component="h2">
                   {user.username}
                 </Typography>
                 <Typography className={classes.subtitle} color="textSecondary">
