@@ -9,11 +9,12 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
   },
   button: {
-    margin: theme.spacing(0, 2),
+    margin: theme.spacing(0, 1),
+    backgroundColor: '#879691',
   },
-  typography: {
-    fontColor: 'white',
-  },
+  container: {
+
+  }
 }));
 
 const Footer = () => {
@@ -31,7 +32,7 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Container maxWidth="md">
+      <Container maxWidth="md" className='container'>
         {location.pathname !== '/' && (
           <Button
             variant="contained"
@@ -42,7 +43,7 @@ const Footer = () => {
             &larr; Return
           </Button>
         )}
-        <Typography variant="h7" align="center" gutterBottom className='typography'>
+        <Typography variant="h7" align="center" gutterBottom>
           Made with{' '}
           <span
             className="emoji"
@@ -62,7 +63,7 @@ const Footer = () => {
         >
           Scroll to Top
         </Button>
-      </Container>
+      </Container >
     </footer>
   );
 };

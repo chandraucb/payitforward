@@ -28,11 +28,6 @@ const Profile = ({ profileData }) => {
       <div className={classes.root}>
         <h1>Profile</h1>
         <div>
-          <img
-            src={profileData.profilePicture} // Will need actual URL for the profile picture.
-            alt="Profile Picture"
-            style={{ width: '150px', borderRadius: '50%' }}
-          />
           <h2>Name: {profileData.name}</h2>
           <p>Bio: {profileData.bio}</p>
           <p>Projects: {profileData.projects}</p>
