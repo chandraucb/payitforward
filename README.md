@@ -1,32 +1,89 @@
-# Project 3 Pay it Forward
+<img src="./client/src/images/pay_it_logo-transformed.png">
 
-## Description
- 
-## Table of Contents
+# Project 3: Pay it Forward
 
+## 🌏 Table of Contents:
+- [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Application UI](#application-user-interface)
+- [Team Members](#team-members)
+- [Credits & Resources](#credits-and-resources)
+- [Coded With](#coded-with)
+- [Contributing](#contributing)
+- [Project Links](#project-links)
 - [License](#license)
-- [Contributions](#contributions)
-- [Images](#images)
-- [Links](#links)
 
-## Installation
+## Description:
+* Mission: To foster compassion, connect volunteers with service projects and build meaningful relationships to create a better society. 
+* Vision: Building a world where acts of kindness and service are accessible to all.
 
+### User Story
 
-## Usage
+```md
+Given a platform that allows organizations to share their fundraisers and volunteer events
+When I log onto the website 
+Then I am presented with various volunteering opportunities and charities in or around my area
+When I choose to join a volunteer group
+Then it is tracked and can be shared on my profile
+When I contribute to a charity 
+Then a post is made showing my contribution and highlighting the organization
+When I search for volunteering opportunities by name or area 
+Then I am returned a relevant list of opportunities happening near me
+When I send a message into the chat 
+Then it is posted and other users can communicate and respond in the chat    
+```
 
+## Installation:
+* `git clone git@github.com:chandraucb/payitforward.git`
+* 
+* 
 
-## License
+## Usage:
+* [Deployed Heroku: Pay it Forward](LINK HERE)
+* 
+* 
 
-This project is protected under the MIT license.
-For more information visit [here](https://opensource.org/licenses/MIT).
+## Application User Interface:
+<img src=""> 
+<img src="">
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+ADD 2 IMAGES HERE.
 
-## Contributions
+## Team Members:
+* Chandra Mohan
+* Carlos Martinez
+* Kevin Gagante
+* Oksana Tatsyak
+* Junel Balbin
 
-## images
+## Credits and Resources:
+* Google search & Youtube videos.
+* ChatGpt for troubleshooting.
+* TA: Kyle Vance.
+* 
+* 
 
-## Links
+## Coded With:
+* Material UI.
+* Express.js
+* React JS.
+* MongoDB.
+* GraphQL.
+* Node.js.
+* VS Code.
+* Heroku.
+* 
+* 
+
+## Contributing:
+* Open to contributions.
+
+## Project Links:
+* [Deployed Heroku](LINK HERE)
+* [Github Repository](https://github.com/chandraucb/payitforward)
+* [Presentation](LINK HERE)
+
+## License:
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
