@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Container } from '@material-ui/core';
 import backgroundImage from '../images/background.jpeg';
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,65 +43,74 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
+  const navigate = useNavigate();
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     // Handle login logic here
+    try {
+      const { data } = await login({ variables: { ...formState } })
+      Auth.login(data.login.token);
+      navigate('/Home');
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
     <div className={classes.container}>
-    <Container component="main" maxWidth="xs">
-    <div className={classes.root}>
-      <Typography component="h1" variant="h5" className={classes.title}>
-        Login
-      </Typography>
-      <form className={classes.form} onSubmit={handleFormSubmit}>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
-          autoFocus
-          value={formState.email}
-          onChange={handleChange}
-        />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          value={formState.password}
-          onChange={handleChange}
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-        >
-          Login
-        </Button>
-        <Link to="/signup" className={classes.link}>
-          Don't have an account? Sign up here.
-        </Link>
-      </form>
-      </div>
+      <Container component="main" maxWidth="xs">
+        <div className={classes.root}>
+          <Typography component="h1" variant="h5" className={classes.title}>
+            Login
+          </Typography>
+          <form className={classes.form} onSubmit={handleFormSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Login
+            </Button>
+            <Link to="/signup" className={classes.link}>
+              Don't have an account? Sign up here.
+            </Link>
+          </form>
+        </div>
       </Container>
     </div>
   );
