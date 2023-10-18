@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -14,7 +14,7 @@ import Login from './pages/Login';
 import Organization from './pages/Home';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-
+import Auth from './utils/auth';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,11 +40,18 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLoginLogout = (logoutLogin) => {
+    setIsLoggedIn(logoutLogin);
+  };
+  useEffect(() => {
+    Auth.loggedIn() ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  }, []);
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Header />
+          <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
           <Routes>
             <Route
               path="/"

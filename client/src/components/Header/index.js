@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 import Auth from '../../utils/auth';
@@ -36,13 +36,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ isLoggedIn, handleLoginLogout }) => {
   const classes = useStyles();
 
-  const logout = event => {
-    event.preventDefault();
-    Auth.logout();
-  }
+  const navigate = useNavigate();
+  const logout = async () => {
+    try {
+      handleLoginLogout(!isLoggedIn)
+      Auth.logout();
+      //navigate('/', { replace: true });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -51,7 +57,7 @@ const Header = () => {
           <Link to="/" className={classes.title}>
             Pay it Forward
           </Link>
-          {Auth.loggedIn() ? (
+          {isLoggedIn ? (
             <div>
               <Link to="/Profile" className={classes.link}>
                 User
@@ -65,7 +71,7 @@ const Header = () => {
             </div>
           ) : (
             <div>
-              <Link to="/login" className={classes.link}>
+              <Link to="/" className={classes.link}>
                 Login
               </Link>
               <Link to="/Signup" className={classes.link}>
