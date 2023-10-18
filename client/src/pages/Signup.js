@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: '20px 0 20px',
+    backgroundColor: '#347068',
   },
   link: {
     marginTop: '10px',
@@ -50,13 +51,20 @@ const Signup = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     // Handle signup logic here
+    // try {
+    //   const { data } = await login({ variables: { ...formState } })
+    //   Auth.login(data.login.token);
+    //   navigate('/Home');
+    // } catch (e) {
+    //   console.error(e);
+    // }
   };
 
   return (
     <div className={classes.container}>
       <Container component="main" maxWidth="xs">
         <div className={classes.root}>
-          <Typography component="h1" variant="h5"className={classes.title}>
+          <Typography component="h1" variant="h5" className={classes.title}>
             Sign Up
           </Typography>
           <form className={classes.form} onSubmit={handleFormSubmit}>

@@ -1,7 +1,24 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, Container, Typography } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    backgroundColor: '#347068',
+    padding: '15px',
+  },
+  button: {
+    margin: theme.spacing(0, 1),
+    backgroundColor: '#879691',
+  },
+  container: {
+
+  }
+}));
 
 const Footer = () => {
+  const classes = useStyles();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,17 +31,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-secondary py-5">
-      <div className="container text-center">
+    <footer className={classes.footer}>
+      <Container maxWidth="md" className='container'>
         {location.pathname !== '/' && (
-          <button
-            className="btn btn-dark mb-3"
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
             onClick={handleReturn}
           >
             &larr; Return
-          </button>
+          </Button>
         )}
-        <h4 className="mb-4">
+        <Typography variant="h7" align="center" gutterBottom>
           Made with{' '}
           <span
             className="emoji"
@@ -35,14 +54,16 @@ const Footer = () => {
             ❤️
           </span>{' '}
           by the Pay it Forward Team
-        </h4>
-        <button
-          className="btn btn-dark"
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
           onClick={handleClickToTop}
         >
           Scroll to Top
-        </button>
-      </div>
+        </Button>
+      </Container >
     </footer>
   );
 };
