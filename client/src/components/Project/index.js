@@ -78,7 +78,7 @@ const Project = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h4" component="h1" gutterBottom>
+      <Typography variant="h4" component="h1" >
         Users
       </Typography>
       {users.map((user) => (

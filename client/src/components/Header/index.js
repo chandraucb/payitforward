@@ -58,7 +58,7 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
           <Link to="/" className={classes.logo}>
             <img src={Logo} alt="Pay it Forward" style={{ width: 'auto', height: '68px' }} />
           </Link>
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? ( */}
             <div>
               <Link to="/Profile" className={classes.link}>
                 User
