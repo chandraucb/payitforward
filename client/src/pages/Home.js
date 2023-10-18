@@ -15,7 +15,7 @@ const Home = () => {
       <div className="card-header bg-dark text-center">
         <h1>Events Calendar</h1>
       </div>
-      <Scheduler
+      {/* <Scheduler
   view="month"
   events={[
     {
@@ -31,7 +31,7 @@ const Home = () => {
       end: new Date("2023/10/14 11:00"),
     },
   ]}
-/>
+/> */}
     </div>
   );
 };
