@@ -75,6 +75,7 @@ function App() {
               path="/Organization"
               element={<Organization />}
             />
+            
             <Route path="*" element={<Home />} />
           </Routes>
           <Footer />

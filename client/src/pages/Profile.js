@@ -1,42 +1,43 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
-//import profiles from '../../server/seeds/profileSeeds.json';
+import User from '../components/User';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '30%',
-  },
   container: {
-    backgroundImage: `url(${backgroundImage})`,
+    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: '20px',
+    paddingTop: '40%',
+
+  },
+  userContainer: {
+    backgroundColor: '#f5f5f5',
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+    marginTop: '20px',
+    maxWidth: '800px',
+    width: '100%',
   },
 }));
 
-const Profile = ({ profileData }) => {
+const Profile = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <div className={classes.root}>
-        <h1>Profile</h1>
-        <div>
-          <h2>Name: {profileData.name}</h2>
-          <p>Bio: {profileData.bio}</p>
-          <p>Projects: {profileData.projects}</p>
-          <p>Organizations: {profileData.organizations}</p>
-        </div>
+      <div className={classes.userContainer}>
+        <User />
       </div>
     </div>
   );
-}
+};
 
 export default Profile;
 
