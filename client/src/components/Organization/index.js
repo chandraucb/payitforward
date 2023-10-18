@@ -26,4 +26,4 @@ Organization.propTypes = {
     contactInfo: PropTypes.string,
 };
 
-export default Organization
+export default Organization;

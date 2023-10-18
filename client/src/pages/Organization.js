@@ -24,12 +24,7 @@ const Organization = ({ name, description, address, link }) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.root}>
-        <h2>{name}</h2>
-        <p>{description}</p>
-        {address && <p><strong>Address:</strong> {address}</p>}
-        {link && <p><a href={link} target="_blank" rel="noopener noreferrer">Website:</a></p>}
-      </div>
+      <Organization/>
     </div>
   );
 }
