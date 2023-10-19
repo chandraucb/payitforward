@@ -35,7 +35,7 @@ const Profile = () => {
     <div className={classes.container}>
       <div className={classes.userContainer}>
       <Project />
-      {/* <User /> */}
+      <User />
       </div>
     </div>
   );
