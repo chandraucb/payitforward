@@ -19,13 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles();
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleReturn = () => {
-    navigate(-1);
-  };
-
   const handleClickToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -33,16 +26,6 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <Container maxWidth="md" className='container'>
-        {location.pathname !== '/' && (
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={handleReturn}
-          >
-            &larr; Return
-          </Button>
-        )}
         <Typography variant="h7" align="center" gutterBottom>
           Made with{' '}
           <span
