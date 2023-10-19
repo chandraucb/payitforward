@@ -31,14 +31,11 @@ const useStyles = makeStyles((theme) => ({
   project: {
   },
 }));
-
 const Profile = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <div className={classes.userContainer}>
-      {<User /> }
       <div className={classes.userAndCalendar}>
           <User className={classes.user}/>
           <Calendar className={classes.calender}/>
