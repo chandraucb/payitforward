@@ -45,7 +45,7 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
     try {
       handleLoginLogout(!isLoggedIn)
       Auth.logout();
-      //navigate('/', { replace: true });
+      navigate('/', { replace: true });
     } catch (err) {
       console.error(err);
     }
@@ -55,11 +55,12 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Link to="/" className={classes.logo}>
-            <img src={Logo} alt="Pay it Forward" style={{ width: 'auto', height: '68px' }} />
-          </Link>
+          <img src={Logo} alt="Pay it Forward" style={{ width: 'auto', height: '68px' }} />
           {isLoggedIn ? (
             <div>
+              <Link to="/Home" className={classes.link}>
+                Home
+              </Link>
               <Link to="/Profile" className={classes.link}>
                 User
               </Link>
@@ -71,14 +72,7 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
               </Button>
             </div>
           ) : (
-            <div>
-              <Link to="/" className={classes.link}>
-                Login
-              </Link>
-              <Link to="/Signup" className={classes.link}>
-                Sign up
-              </Link>
-            </div>
+              <div/>
           )}
         </Toolbar>
       </AppBar>

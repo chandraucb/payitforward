@@ -1,20 +1,20 @@
-const { Schema, model } = require('mongoose');
+const { Schema , model} = require('mongoose');
 
 const eventSchema = new Schema({
     title: {
         type: String,
         required: true
     },
-    start: {
+    eventStart: {
         type: Date,
         required: true
     },
-    end: {
+    eventEnd: {
         type: Date,
         required: true
     },
-})
+});
 
-const Events = model('Events', eventSchema);
+const Event = model('Event', eventSchema);
 
-module.exports = Events;
+module.exports = Event;

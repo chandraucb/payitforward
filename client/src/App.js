@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Organization from './pages/Home';
+import Organization from './pages/Organization';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Auth from './utils/auth';
@@ -49,6 +49,8 @@ function App() {
   useEffect(() => {
     Auth.loggedIn() ? setIsLoggedIn(true) : setIsLoggedIn(false);
   }, []);
+
+  if (isLoggedIn) {
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -57,15 +59,11 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Login />}
+              element={<Home />}
             />
             <Route
               path="/Home"
               element={<Home />}
-            />
-            <Route
-              path="/Signup"
-              element={<Signup />}
             />
             <Route
               path="/Profile"
@@ -75,7 +73,7 @@ function App() {
               path="/Organization"
               element={<Organization />}
             />
-            
+
             <Route path="*" element={<Home />} />
           </Routes>
           <Footer />
@@ -83,6 +81,34 @@ function App() {
       </Router>
     </ApolloProvider>
   );
+  } else {
+
+    return (
+    <ApolloProvider client={client}>
+    <Router>
+      <div className="flex-column justify-center align-center min-100-vh bg-primary">
+        <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
+        <Routes>
+          <Route
+            path="/"
+            element={<Login />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+              path="/Signup"
+              element={<Signup />}
+            />
+          <Route path="*" element={<Login />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </ApolloProvider>);
+    
+  }
 }
 
 export default App;
