@@ -30,14 +30,14 @@ const useStyles = makeStyles((theme) => ({
   },
   userAndCalendar: {
     display: 'flex',
-    marginBottom: '20px', 
+    marginBottom: '20px',
   },
   user: {
     marginRight: '20px', // Add spacing between User and Calendar
   },
   calendar: {
     paddingTop: '10%',
-},
+  },
   project: {
   },
 }));
@@ -50,7 +50,7 @@ const Profile = () => {
     event.preventDefault();
 
     const mutationResponse = await createEvent({
-      variables: { title: "test", eventStart: new Date(), eventEnd: new Date()},
+      variables: { title: "test", eventStart: new Date(), eventEnd: new Date() },
     });
 
   }
@@ -59,23 +59,24 @@ const Profile = () => {
     <div className={classes.container}>
 
       <div>
-      {<User /> }
+        {<User />}
 
-      <div className={classes.userAndCalendar}>
-          <User className={classes.user}/>
-          <Calendar className={classes.calender}/>
+        <div className={classes.userAndCalendar}>
+          <User className={classes.user} />
+          <Calendar className={classes.calender} />
+        </div>
+        <div className={classes.project}>
+          <Project />
+        </div>
+        <Button
+          type="submit"
+          variant="contained"
+          className={classes.submit}
+          onClick={handleCreate}
+        >
+          Create Event
+        </Button>
       </div>
-      <div className={classes.project}>
-        <Project />
-      </div>
-      <Button
-              type="submit"
-              variant="contained"
-              className={classes.submit}
-              onClick={handleCreate}
-            >
-              Create Event
-            </Button>
     </div>
   );
 };

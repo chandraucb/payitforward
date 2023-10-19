@@ -57,41 +57,15 @@ const User = () => {
     <div className={classes.root}>
       <Typography variant="h4" component="h1" className={classes.header}>
 
-      {user.id}
+        {user.id}
       </Typography>
 
-        <Card key={user.id} className={classes.card}>
-          <CardContent>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={4}>
-                {/* will randomly generate an avatar */}
-                <Avatar alt={user.username} src={`https://i.pravatar.cc/150?img=${user.id}`} className={classes.avatar} />
-              </Grid>
-              <Grid item xs={12} sm={8}>
-                <Typography className={classes.title} variant="h2" component="h2">
-                  {user.username}
-                </Typography>
-                <Typography className={classes.subtitle} color="textSecondary">
-                  Email:
-                </Typography>
-                <Typography className={classes.content} variant="body2" component="p">
-                  {user.email}
-                </Typography>
-                <Typography className={classes.subtitle} color="textSecondary">
-                  Events:
-                </Typography>
-                {user.events.map((event) => (
-                  <div key={event.id}>
-                    <Typography className={classes.content} variant="body2" component="p">
-                      {event.title}
-                    </Typography>
-                    <Typography className={classes.content} variant="body2" component="p">
-                      {new Date(event.eventStart).toLocaleDateString()} - {new Date(event.eventEnd).toLocaleDateString()}
-                    </Typography>
-                  </div>
-                ))}
-              </Grid>
-
+      <Card key={user.id} className={classes.card}>
+        <CardContent>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={4}>
+              {/* will randomly generate an avatar */}
+              <Avatar alt={user.username} src={`https://i.pravatar.cc/150?img=${user.id}`} className={classes.avatar} />
             </Grid>
             <Grid item xs={12} sm={8}>
               <Typography className={classes.title} variant="h2" component="h2">
@@ -112,11 +86,36 @@ const User = () => {
                     {event.title}
                   </Typography>
                   <Typography className={classes.content} variant="body2" component="p">
-                    {new Date(event.start).toLocaleDateString()} - {new Date(event.end).toLocaleDateString()}
+                    {new Date(event.eventStart).toLocaleDateString()} - {new Date(event.eventEnd).toLocaleDateString()}
                   </Typography>
                 </div>
               ))}
             </Grid>
+
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Typography className={classes.title} variant="h2" component="h2">
+              {user.username}
+            </Typography>
+            <Typography className={classes.subtitle} color="textSecondary">
+              Email:
+            </Typography>
+            <Typography className={classes.content} variant="body2" component="p">
+              {user.email}
+            </Typography>
+            <Typography className={classes.subtitle} color="textSecondary">
+              Events:
+            </Typography>
+            {user.events.map((event) => (
+              <div key={event.id}>
+                <Typography className={classes.content} variant="body2" component="p">
+                  {event.title}
+                </Typography>
+                <Typography className={classes.content} variant="body2" component="p">
+                  {new Date(event.start).toLocaleDateString()} - {new Date(event.end).toLocaleDateString()}
+                </Typography>
+              </div>
+            ))}
           </Grid>
         </CardContent>
       </Card>
