@@ -11,6 +11,35 @@ mutation AddEvent($title: String!, $eventStart: String, $eventEnd: String) {
 }
 `;
 
+export const UPDATE_USER_EVENT = gql`
+mutation UpdateUserEvent($updateUserEventId: ID!) {
+  updateUserEvent(id: $updateUserEventId) {
+    username
+    events {
+      title
+      _id
+      eventEnd
+      eventStart
+    }
+  }
+}
+`;
+
+export const REMOVE_USER_EVENT = gql`
+mutation RemoveUserEvent($removeUserEventId: ID!) {
+  removeUserEvent(id: $removeUserEventId) {
+    username
+    events {
+      title
+      eventStart
+      eventEnd
+      _id
+    }
+  }
+}
+`;
+
+
 export const ADD_USER = gql`
 mutation AddUser($username: String!, $email: String!, $password: String!) {
   addUser(username: $username, email: $email, password: $password) {
