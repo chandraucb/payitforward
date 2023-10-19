@@ -13,25 +13,25 @@ const projectSchema = new Schema({
         type: String,
         required: false
     },
-    schedule: {
+    schedule: [{
         type: Schema.Types.ObjectId,
-        ref: 'Events',
+        ref: 'Event',
         required: false
-    },
+    }],
     goal: {
         type: String,
         required: false
     },
-    sponsor: {
+    sponsors: [{
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: false
-    },
-    volunteer: {
+    }],
+    volunteers: [{
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: false
-    }
+    }]
 });
 
 const Project = model('Project', projectSchema);
