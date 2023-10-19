@@ -6,7 +6,11 @@ import Project from '../components/Project';
 import Calendar from '../components/Calendar';
 
 const useStyles = makeStyles((theme) => ({
-   container: {
+
+  container: {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column', // Stack components vertically
     alignItems: 'center', // Center components horizontally
@@ -33,6 +37,8 @@ const Profile = () => {
 
   return (
     <div className={classes.container}>
+      <div className={classes.userContainer}>
+      {<User /> }
       <div className={classes.userAndCalendar}>
           <User className={classes.user}/>
           <Calendar className={classes.calender}/>
