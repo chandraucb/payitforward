@@ -71,14 +71,7 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
               </Button>
             </div>
           ) : (
-            <div>
-              <Link to="/" className={classes.link}>
-                Login
-              </Link>
-              <Link to="/Signup" className={classes.link}>
-                Sign up
-              </Link>
-            </div>
+              <div/>
           )}
         </Toolbar>
       </AppBar>
