@@ -1,12 +1,117 @@
 [
     {
+        "title": "Plastic waste curb cleanup!",
+        "eventStart": "10-1-2023 12:00:00",
+        "eventEnd": "10-1-2023 14:00:00"
+    },
+    {
         "title": "Spend a day with the elderly!",
+        "eventStart": "10-4-2023 12:00:00",
+        "eventEnd": "10-4-2023 14:00:00"
+    },
+    {
+        "title": "Come and clean the beach!",
+        "eventStart": "10-7-2023 12:00:00",
+        "eventEnd": "10-7-2023 14:00:00"
+    },
+    {
+        "title": "Teach a child to ride a bicycle!",
+        "eventStart": "10-9-2023 12:00:00",
+        "eventEnd": "10-9-2023 14:00:00"
+    },
+    {
+        "title": "Let's make sandwiches!",
+        "eventStart": "10-11-2023 12:00:00",
+        "eventEnd": "10-11-2023 14:00:00"
+    },
+    {
+        "title": "Offer Tutoring and Mentoring!",
+        "eventStart": "10-13-2023 12:00:00",
+        "eventEnd": "10-13-2023 14:00:00"
+    },
+    {
+        "title": "Assist with Animal Therapy!",
         "eventStart": "10-15-2023 12:00:00",
         "eventEnd": "10-15-2023 14:00:00"
     },
     {
-        "title": "Come and clean the beach!",
-        "eventStart": "10-23-2023 12:00:00",
-        "eventEnd": "10-23-2023 14:00:00"
+        "title": "Coordinate Blood Drives!",
+        "eventStart": "10-17-2023 12:00:00",
+        "eventEnd": "10-17-2023 14:00:00"
+    },
+    {
+        "title": "Let's be active and play sports!",
+        "eventStart": "10-21-2023 12:00:00",
+        "eventEnd": "10-21-2023 14:00:00"
+    },
+    {
+        "title": "Encouraging Mental Health and Well-being!",
+        "eventStart": "10-24-2023 12:00:00",
+        "eventEnd": "10-24-2023 14:00:00"
+    },
+    {
+        "title": "Let's support Veterans and Military Families!",
+        "eventStart": "10-27-2023 12:00:00",
+        "eventEnd": "10-27-2023 14:00:00"
+    },
+    {
+        "title": "Endless Toy Drive!",
+        "eventStart": "10-29-2023 12:00:00",
+        "eventEnd": "10-29-2023 14:00:00"
+    },
+    {
+        "title": "Free Bike Repair Shop!",
+        "eventStart": "10-30-2023 12:00:00",
+        "eventEnd": "10-30-2023 14:00:00"
+    },
+    {
+        "title": "Come and clean the drains before the Storm!",
+        "eventStart": "11-3-2023 12:00:00",
+        "eventEnd": "11-3-2023 14:00:00"
+    },
+    {
+        "title": "Graffiti Removal Team!",
+        "eventStart": "11-5-2023 12:00:00",
+        "eventEnd": "11-5-2023 14:00:00"
+    },
+    {
+        "title": "Puppet Shows or Storytelling for Children!",
+        "eventStart": "11-10-2023 12:00:00",
+        "eventEnd": "11-10-2023 14:00:00"
+    },
+    {
+        "title": "Free Auto Repair Clinic!",
+        "eventStart": "11-12-2023 12:00:00",
+        "eventEnd": "11-12-2023 14:00:00"
+    },
+    {
+        "title": "Let's write for Elderly Pen Pal!",
+        "eventStart": "11-15-2023 12:00:00",
+        "eventEnd": "11-15-2023 14:00:00"
+    },
+    {
+        "title": "Community DIY Recycling Center!",
+        "eventStart": "11-18-2023 12:00:00",
+        "eventEnd": "11-18-2023 14:00:00"
+    },
+    {
+        "title": "Clothes donation drive for youth!",
+        "eventStart": "11-21-2023 12:00:00",
+        "eventEnd": "11-21-2023 14:00:00"
+    },
+    {
+        "title": "Emergency Evacuation Drills!",
+        "eventStart": "11-24-2023 12:00:00",
+        "eventEnd": "11-24-2023 14:00:00"
+    },
+    {
+        "title": "Don't waste. Zero-Waste Initiative!",
+        "eventStart": "11-27-2023 12:00:00",
+        "eventEnd": "11-27-2023 14:00:00"
+    },
+    {
+        "title": "Free Transportation Service for Seniors!",
+        "eventStart": "11-29-2023 12:00:00",
+        "eventEnd": "11-29-2023 14:00:00"
     }
 ]
