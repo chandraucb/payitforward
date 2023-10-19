@@ -1,5 +1,5 @@
 const { Types } = require("mongoose");
-const { User, Post, Project, Organization, Events } = require('../models');
+const { User, Post, Project, Organization, Event } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const { GraphQLScalarType, Kind } = require('graphql');
@@ -25,6 +25,14 @@ const resolvers = {
         },
         user: async (parent, arg, context) => {
             return User.findOne({ username: context.user.username }).populate('events').lean();
+        },
+        events: async () => {
+            const events = await Event.find();
+            return events;
+        },
+        event: async () => {
+            const events = await Event.find();
+            return events;
         },
         posts: async () => {
             const posts = await Post.find().populate('user');
@@ -80,6 +88,20 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
+        },
+
+        //add a post
+        addEvent: async (parent, { title, eventStart, eventEnd }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+            const event = await Event.create({title,eventStart,eventEnd});
+
+            if (!event) {
+                throw new Error('Unable to create Event');
+            }
+
+            return event;
         },
         //add a post
         addPost: async (parent, { caption, date }, context) => {

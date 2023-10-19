@@ -58,19 +58,12 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
           <img src={Logo} alt="Pay it Forward" style={{ width: 'auto', height: '68px' }} />
           {isLoggedIn ? (
             <div>
-              <Link to="/Home" className={classes.link}>
-                Home
-              </Link>
               <Link to="/Profile" className={classes.link}>
-                User
+                PROFILE
               </Link>
-
               <Link to="/Project" className={classes.link}>
-                Project
+                PROJECT
               </Link>              
-              <Link to="/Organizations" className={classes.link}>
-                Organizations
-              </Link>
               <Button color="inherit" onClick={logout}>
                 Logout
               </Button>

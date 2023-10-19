@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Card, CardContent, Avatar, Grid } from '@material-ui/core';
-
 import { QUERY_USER } from '../../utils/queries';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,8 +51,8 @@ const User = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h1" component="h1" className={classes.header}>
-        Users
+      <Typography variant="h4" component="h1" className={classes.header}>
+      {user.id}
       </Typography>
         <Card key={user.id} className={classes.card}>
           <CardContent>
@@ -81,7 +80,7 @@ const User = () => {
                       {event.title}
                     </Typography>
                     <Typography className={classes.content} variant="body2" component="p">
-                      {new Date(event.start).toLocaleDateString()} - {new Date(event.end).toLocaleDateString()}
+                      {new Date(event.eventStart).toLocaleDateString()} - {new Date(event.eventEnd).toLocaleDateString()}
                     </Typography>
                   </div>
                 ))}
@@ -92,84 +91,5 @@ const User = () => {
     </div>
   );
 };
-
-/*const users = [
-  {
-    id: 1,
-    username: 'Oksana Tatsyak',
-    email: 'oksana@gmail.com',
-    events: [
-      {
-        id: 1,
-        title: 'Spend a day with the elderly!',
-        start: '10-15-2023 12:00:00',
-        end: '10-15-2023 14:00:0',
-      },
-      {
-        id: 2,
-        title: 'Spend a day with the elderly!',
-        start: '10-15-2023 12:00:00',
-        end: '10-15-2023 14:00:0',
-      },
-    ],
-  },
-  {
-    id: 2,
-    username: 'Kevin Gagante',
-    email: 'kevin@gmail.com',
-    events: [
-        {
-            id: 1,
-            title: 'Spend a day with the elderly!',
-            start: '10-15-2023 12:00:00',
-            end: '10-15-2023 14:00:0',
-          },
-          {
-            id: 2,
-            title: 'Spend a day with the elderly!',
-            start: '10-15-2023 12:00:00',
-            end: '10-15-2023 14:00:0',
-          },
-    ],
-  },
-  {
-    id: 3,
-    username: 'Junel Balbin',
-    email: 'junel@gmail.com',
-    events: [
-      {
-        id: 1,
-        title: 'Event 3',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-      {
-        id: 2,
-        title: 'Event 4',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-    ],
-  },
-  {
-    id: 4,
-    username: 'Chandra Mohan',
-    email: 'chandra@gmail.com',
-    events: [
-      {
-        id: 1,
-        title: 'Event 3',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-      {
-        id: 2,
-        title: 'Event 4',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-    ],
-  },
-];*/
 
 export default User;

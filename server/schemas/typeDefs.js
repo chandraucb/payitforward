@@ -8,8 +8,8 @@ type Event {
     _id: ID
     event_id: String
     title: String
-    start: Date
-    end: Date
+    eventStart: Date
+    eventEnd: Date
 }
 
 type User {
@@ -67,6 +67,7 @@ type Query {
 type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addEvent (title: String!, eventStart: String, eventEnd: String): Event
     addPost(caption: String!, date: String!): Post
     updatePost(id: ID!): Post
     deletePost(id: ID!): Post
