@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
+import Project from '../components/Project';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -13,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '20px',
-    paddingTop: '40%',
+    paddingTop: '35%',
 
   },
   userContainer: {
@@ -33,7 +34,8 @@ const Profile = () => {
   return (
     <div className={classes.container}>
       <div className={classes.userContainer}>
-        <User />
+      <Project />
+      {/* <User /> */}
       </div>
     </div>
   );
