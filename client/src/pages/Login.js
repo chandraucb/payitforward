@@ -71,10 +71,10 @@ const Login = () => {
     <div className={classes.container}>
       <Container component="main" maxWidth="xs">
         <div className={classes.root}>
-          {loginError && <div id="loginError">Invalid Login</div>}
           <Typography component="h1" variant="h5" className={classes.title}>
             Login
           </Typography>
+          {loginError && <div id="loginError">Invalid Login</div>}
           <form className={classes.form} onSubmit={handleFormSubmit}>
             <TextField
               variant="outlined"
