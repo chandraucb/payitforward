@@ -22,13 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles();
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleReturn = () => {
-    navigate(-1);
-  };
-
   const handleClickToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
