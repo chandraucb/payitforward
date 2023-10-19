@@ -5,8 +5,8 @@ query Query {
   user {
     events {
       title
-      start
-      end
+      eventStart
+      eventEnd
     }
     username
     email

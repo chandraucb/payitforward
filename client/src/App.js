@@ -60,11 +60,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Home />}
-              />
-              <Route
-                path="/Home"
-                element={<Home />}
+                element={<Profile />}
               />
               <Route
                 path="/Profile"
@@ -83,7 +79,7 @@ function App() {
                 element={<Organization />}
               />
 
-              <Route path="*" element={<Home />} />
+              <Route path="*" element={<Profile />} />
             </Routes>
             <Footer />
           </div>

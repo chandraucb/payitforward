@@ -6,16 +6,21 @@ import ProjectComp from '../components/Project';
 
 const useStyles = makeStyles((theme) => ({
     container: {
-      // backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundAttachment: `fixed`,
       backgroundSize: 'cover',
-      height: '100vh',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      minHeight: '100vh',
+      minWidth: '100vw',
+      //height: '100vh',
       display: 'flex',
-      flexDirection: 'column',
+      //flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       padding: '20px',
       paddingTop: '35%',
-  
+
     },
     userContainer: {
       backgroundColor: '#f5f5f5',

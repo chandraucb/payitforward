@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
 const User = () => {
   const classes = useStyles();
 
@@ -53,8 +56,10 @@ const User = () => {
   return (
     <div className={classes.root}>
       <Typography variant="h4" component="h1" className={classes.header}>
-        Welcome to your profile! 
+
+      {user.id}
       </Typography>
+
         <Card key={user.id} className={classes.card}>
           <CardContent>
             <Grid container spacing={3}>
@@ -81,96 +86,44 @@ const User = () => {
                       {event.title}
                     </Typography>
                     <Typography className={classes.content} variant="body2" component="p">
-                      {new Date(event.start).toLocaleDateString()} - {new Date(event.end).toLocaleDateString()}
+                      {new Date(event.eventStart).toLocaleDateString()} - {new Date(event.eventEnd).toLocaleDateString()}
                     </Typography>
                   </div>
                 ))}
               </Grid>
+
             </Grid>
-          </CardContent>
-        </Card>
+            <Grid item xs={12} sm={8}>
+              <Typography className={classes.title} variant="h2" component="h2">
+                {user.username}
+              </Typography>
+              <Typography className={classes.subtitle} color="textSecondary">
+                Email:
+              </Typography>
+              <Typography className={classes.content} variant="body2" component="p">
+                {user.email}
+              </Typography>
+              <Typography className={classes.subtitle} color="textSecondary">
+                Events:
+              </Typography>
+              {user.events.map((event) => (
+                <div key={event.id}>
+                  <Typography className={classes.content} variant="body2" component="p">
+                    {event.title}
+                  </Typography>
+                  <Typography className={classes.content} variant="body2" component="p">
+                    {new Date(event.start).toLocaleDateString()} - {new Date(event.end).toLocaleDateString()}
+                  </Typography>
+                </div>
+              ))}
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
     </div>
   );
 };
 
+
+
 export default User;
-
-/*const users = [
-  {
-    id: 1,
-    username: 'Oksana Tatsyak',
-    email: 'oksana@gmail.com',
-    events: [
-      {
-        id: 1,
-        title: 'Spend a day with the elderly!',
-        start: '10-15-2023 12:00:00',
-        end: '10-15-2023 14:00:0',
-      },
-      {
-        id: 2,
-        title: 'Spend a day with the elderly!',
-        start: '10-15-2023 12:00:00',
-        end: '10-15-2023 14:00:0',
-      },
-    ],
-  },
-  {
-    id: 2,
-    username: 'Kevin Gagante',
-    email: 'kevin@gmail.com',
-    events: [
-        {
-            id: 1,
-            title: 'Spend a day with the elderly!',
-            start: '10-15-2023 12:00:00',
-            end: '10-15-2023 14:00:0',
-          },
-          {
-            id: 2,
-            title: 'Spend a day with the elderly!',
-            start: '10-15-2023 12:00:00',
-            end: '10-15-2023 14:00:0',
-          },
-    ],
-  },
-  {
-    id: 3,
-    username: 'Junel Balbin',
-    email: 'junel@gmail.com',
-    events: [
-      {
-        id: 1,
-        title: 'Event 3',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-      {
-        id: 2,
-        title: 'Event 4',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-    ],
-  },
-  {
-    id: 4,
-    username: 'Chandra Mohan',
-    email: 'chandra@gmail.com',
-    events: [
-      {
-        id: 1,
-        title: 'Event 3',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-      {
-        id: 2,
-        title: 'Event 4',
-        start: '10-16-2023 15:00:00',
-        end: '10-16-2023 17:00:00',
-      },
-    ],
-  },
-];*/
-
