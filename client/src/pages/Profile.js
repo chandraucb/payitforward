@@ -6,7 +6,7 @@ import Project from '../components/Project';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    // backgroundImage: `url(${backgroundImage})`,
+    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
@@ -34,7 +34,6 @@ const Profile = () => {
   return (
     <div className={classes.container}>
       <div className={classes.userContainer}>
-      {/*<Project /> */}
       {<User /> }
       </div>
     </div>
