@@ -3,28 +3,32 @@ import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
 import Project from '../components/Project';
+import Calendar from '../components/Calendar';
 
 const useStyles = makeStyles((theme) => ({
+
   container: {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'column', // Stack components vertically
+    alignItems: 'center', // Center components horizontally
     padding: '20px',
-    paddingTop: '35%',
+    paddingTop: '10%',
 
   },
-  userContainer: {
-    backgroundColor: '#f5f5f5',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-    marginTop: '20px',
-    maxWidth: '800px',
-    width: '100%',
+  userAndCalendar: {
+    display: 'flex',
+    marginBottom: '20px', 
+  },
+  user: {
+    marginRight: '20px', // Add spacing between User and Calendar
+  },
+  calendar: {
+    paddingTop: '10%',
+},
+  project: {
   },
 }));
 
@@ -35,12 +39,14 @@ const Profile = () => {
     <div className={classes.container}>
       <div className={classes.userContainer}>
       {<User /> }
+      <div className={classes.userAndCalendar}>
+          <User className={classes.user}/>
+          <Calendar className={classes.calender}/>
+      </div>
+      <div className={classes.project}>
+        <Project />
       </div>
     </div>
   );
 };
-
 export default Profile;
-
-
-// First edit to Profile.js. I'm still unsure if I did this correctly. Needs more work done.

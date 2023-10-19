@@ -4,19 +4,25 @@ import { Typography, Card, CardContent, Avatar, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '20px',
-    paddingTop: '470%',
-    // this was to display the project info on the page properly
-    // need to fix it so it displays properly
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#347068', // Green background color
+    minHeight: '100vh', // Make the container at least full height
+    padding: '20px',
   },
   card: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#347068', // Green background color for cards
+    color: 'white', // White text color for cards
     padding: '10px',
     margin: '10px',
+        alignItems: 'center', // Center horizontally
+
   },
   header: {
     textAlign: 'center',
     marginBottom: '20px',
+    justifyContent: 'center',
+
   },
   avatar: {
     width: '100px',

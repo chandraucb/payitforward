@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '30%',
   },
   container: {
-    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',

@@ -8,9 +8,10 @@ import { QUERY_USER } from '../../utils/queries';
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: '20px',
+    paddingTop: '10%',
   },
   card: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#347068',
     padding: '10px',
     margin: '10px',
   },
@@ -39,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const User = () => {
   const classes = useStyles();
 
@@ -52,8 +52,8 @@ const User = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h1" component="h1" className={classes.header}>
-        Users
+      <Typography variant="h4" component="h1" className={classes.header}>
+        Welcome to your profile! 
       </Typography>
         <Card key={user.id} className={classes.card}>
           <CardContent>
@@ -92,6 +92,8 @@ const User = () => {
     </div>
   );
 };
+
+export default User;
 
 /*const users = [
   {
@@ -172,4 +174,3 @@ const User = () => {
   },
 ];*/
 
-export default User;
