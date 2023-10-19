@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Container } from '@material-ui/core';
 import backgroundImage from '../images/background.jpeg';
 
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Signup = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const [signup, { error }] = useMutation(ADD_USER);
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
   const handleChange = (event) => {
@@ -48,16 +53,18 @@ const Signup = () => {
     setFormState({ ...formState, [name]: value });
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // Handle signup logic here
-    // try {
-    //   const { data } = await login({ variables: { ...formState } })
-    //   Auth.login(data.login.token);
-    //   navigate('/Home');
-    // } catch (e) {
-    //   console.error(e);
-    // }
+
+    const mutationResponse = await signup({
+      variables: { email: formState.email, password: formState.password, username: formState.username},
+    });
+
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+
+    navigate('/Home');
+
   };
 
   return (
