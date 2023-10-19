@@ -34,8 +34,8 @@ const Profile = () => {
   return (
     <div className={classes.container}>
       <div className={classes.userContainer}>
-      <Project />
-      {/* <User /> */}
+      {/*<Project /> */}
+      {<User /> }
       </div>
     </div>
   );
