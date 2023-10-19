@@ -3,14 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
 import Project from '../components/Project';
-<<<<<<< HEAD
+
 import { TextField, Button, Typography, Container } from '@material-ui/core';
 
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
-=======
+
 import Calendar from '../components/Calendar';
->>>>>>> 7477270808caf09708984d6b2da5781c0716d1de
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -19,14 +19,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
-<<<<<<< HEAD
+
     flexDirection: 'column',
     justifyContent: 'top',
     alignItems: 'center',
-=======
-    flexDirection: 'column', // Stack components vertically
-    alignItems: 'center', // Center components horizontally
->>>>>>> 7477270808caf09708984d6b2da5781c0716d1de
+
     padding: '20px',
     paddingTop: '10%',
 
@@ -44,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
   project: {
   },
 }));
-
 const Profile = () => {
   const classes = useStyles();
 
@@ -61,8 +57,10 @@ const Profile = () => {
 
   return (
     <div className={classes.container}>
+
       <div>
       {<User /> }
+
       <div className={classes.userAndCalendar}>
           <User className={classes.user}/>
           <Calendar className={classes.calender}/>

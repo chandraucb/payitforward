@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Card, CardContent, Avatar, Grid } from '@material-ui/core';
+
 import { QUERY_USER } from '../../utils/queries';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
 const User = () => {
   const classes = useStyles();
 
@@ -55,6 +59,7 @@ const User = () => {
 
       {user.id}
       </Typography>
+
         <Card key={user.id} className={classes.card}>
           <CardContent>
             <Grid container spacing={3}>
@@ -86,12 +91,39 @@ const User = () => {
                   </div>
                 ))}
               </Grid>
+
             </Grid>
-          </CardContent>
-        </Card>
+            <Grid item xs={12} sm={8}>
+              <Typography className={classes.title} variant="h2" component="h2">
+                {user.username}
+              </Typography>
+              <Typography className={classes.subtitle} color="textSecondary">
+                Email:
+              </Typography>
+              <Typography className={classes.content} variant="body2" component="p">
+                {user.email}
+              </Typography>
+              <Typography className={classes.subtitle} color="textSecondary">
+                Events:
+              </Typography>
+              {user.events.map((event) => (
+                <div key={event.id}>
+                  <Typography className={classes.content} variant="body2" component="p">
+                    {event.title}
+                  </Typography>
+                  <Typography className={classes.content} variant="body2" component="p">
+                    {new Date(event.start).toLocaleDateString()} - {new Date(event.end).toLocaleDateString()}
+                  </Typography>
+                </div>
+              ))}
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
     </div>
   );
 };
+
 
 
 export default User;
