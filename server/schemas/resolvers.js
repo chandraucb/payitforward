@@ -2,17 +2,17 @@ const { Types } = require("mongoose");
 const { User, Post, Project, Organization, Events } = require('../models');
 const { signToken } = require('../utils/auth');
 
-const { GraphQLScalarType , Kind} = require ('graphql');
+const { GraphQLScalarType, Kind } = require('graphql');
 
 const dateScalar = new GraphQLScalarType({
-  name: 'Date',
-  description: 'Date custom scalar type',
-  serialize(value) {
-    if (value instanceof Date) {
-      return value; 
-    }
-    throw Error('GraphQL Date Scalar serializer expected a `Date` object');
-  },
+    name: 'Date',
+    description: 'Date custom scalar type',
+    serialize(value) {
+        if (value instanceof Date) {
+            return value;
+        }
+        throw Error('GraphQL Date Scalar serializer expected a `Date` object');
+    },
 });
 
 const resolvers = {
@@ -24,7 +24,7 @@ const resolvers = {
             return users;
         },
         user: async (parent, arg, context) => {
-            return User.findOne({username: context.user.username}).populate('events').lean();
+            return User.findOne({ username: context.user.username }).populate('events').lean();
         },
         posts: async () => {
             const posts = await Post.find().populate('user');
@@ -33,7 +33,7 @@ const resolvers = {
         post: async (parent, { id }) => {
             const post = await Post.findOne(
                 { _id: new Types.ObjectId(id) }).populate('user');
-                return post;
+            return post;
         },
         //get all projects
         projects: async () => {
@@ -55,7 +55,7 @@ const resolvers = {
         organization: async (parent, { id }) => {
             const organization = await Organization.findOne(
                 { _id: new Types.ObjectId(id) }).populate('contactInfo');
-                return organization;
+            return organization;
         }
     },
     Mutation: {
@@ -66,19 +66,19 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
-        
+
             if (!user) {
                 throw new AuthenticationError('No user found with this email address');
             }
-        
+
             const correctPw = await user.isCorrectPassword(password);
-        
+
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }
-        
+
             const token = signToken(user);
-        
+
             return { token, user };
         },
         //add a post
@@ -116,7 +116,7 @@ const resolvers = {
             }
             const post = await Post.findOneAndDelete(
                 { _id: new Types.ObjectId(id) }
-                );
+            );
         },
         //add a project
         addProject: async (parent, { name, description, address, goal }, context) => {
@@ -155,7 +155,7 @@ const resolvers = {
             }
             const project = await Project.findOneAndDelete(
                 { _id: new Types.ObjectId(id) }
-                );
+            );
         },
         //add an organization
         addOrganization: async (parent, { name, description, address, link, goal }, context) => {
@@ -195,7 +195,7 @@ const resolvers = {
             }
             const organization = await Organization.findOneAndDelete(
                 { _id: new Types.ObjectId(id) }
-                );
+            );
         }
         /*
         addVote: async (parent, { id, techNum }, context) => {

@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: '#347068',
     padding: '15px',
+    position: 'fixed',
+    width: '100vw',
+    bottom: 0,
   },
   button: {
     margin: theme.spacing(0, 1),
@@ -19,13 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles();
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleReturn = () => {
-    navigate(-1);
-  };
-
   const handleClickToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -33,17 +29,7 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <Container maxWidth="md" className='container'>
-        {location.pathname !== '/' && (
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={handleReturn}
-          >
-            &larr; Return
-          </Button>
-        )}
-        <Typography variant="h7" align="center" gutterBottom>
+        <Typography variant="h6" align="center" gutterBottom>
           Made with{' '}
           <span
             className="emoji"
@@ -55,14 +41,6 @@ const Footer = () => {
           </span>{' '}
           by the Pay it Forward Team
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={handleClickToTop}
-        >
-          Scroll to Top
-        </Button>
       </Container >
     </footer>
   );

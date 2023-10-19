@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Organization from './pages/Organization';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import Project from './pages/Project';
 import Auth from './utils/auth';
 import Footer from './components/Footer/index';
 
@@ -51,36 +52,40 @@ function App() {
   }, []);
 
   if (isLoggedIn) {
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
-          <Routes>
+    return (
+      <ApolloProvider client={client}>
+        <Router>
+          <div className="flex-column justify-center align-center min-100-vh bg-primary">
+            <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
+            <Routes>
+              <Route
+                path="/"
+                element={<Profile />}
+              />
+              <Route
+                path="/Profile"
+                element={<Profile />}
+              />
             <Route
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/Home"
-              element={<Home />}
-            />
-            <Route
-              path="/Profile"
-              element={<Profile />}
-            />
-            <Route
-              path="/Organization"
-              element={<Organization />}
-            />
+              path="/Project"
+              element={<Project />}
+            />              
+              <Route
+                path="/Organization/:organizationId"
+                element={<Organization />}
+              />
+              <Route
+                path="/Organizations"
+                element={<Organization />}
+              />
 
-            <Route path="*" element={<Home />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </ApolloProvider>
-  );
+              <Route path="*" element={<Profile />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </ApolloProvider>
+    );
   } else {
 
     return (

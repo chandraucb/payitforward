@@ -45,8 +45,10 @@ const Login = () => {
   const classes = useStyles();
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
+  const [loginError, setError] = useState(false)
 
   const handleChange = (event) => {
+    setError(false)
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
@@ -61,6 +63,7 @@ const Login = () => {
       navigate('/Home');
     } catch (e) {
       console.error(e);
+      setError(true)
     }
   };
 
@@ -71,6 +74,7 @@ const Login = () => {
           <Typography component="h1" variant="h5" className={classes.title}>
             Login
           </Typography>
+          {loginError && <div id="loginError">Invalid Login</div>}
           <form className={classes.form} onSubmit={handleFormSubmit}>
             <TextField
               variant="outlined"
