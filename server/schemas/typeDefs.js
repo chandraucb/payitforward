@@ -61,7 +61,7 @@ type Query {
     projects: [Project]
     project(id: ID!): Project
     organizations: [Organization]
-    organization: Organization
+    organization(id: ID!): Organization
 }
 
 type Mutation {
