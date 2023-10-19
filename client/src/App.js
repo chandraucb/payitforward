@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Organization from './pages/Organization';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import Project from './pages/Project';
 import Auth from './utils/auth';
 import Footer from './components/Footer/index';
 
@@ -68,6 +69,10 @@ function App() {
             <Route
               path="/Profile"
               element={<Profile />}
+            />
+            <Route
+              path="/Project"
+              element={<Project />}
             />
             <Route
               path="/Organization"
