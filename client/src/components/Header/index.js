@@ -64,15 +64,15 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
               <Link to="/Profile" className={classes.link}>
                 User
               </Link>
-              <Link to="/Organization" className={classes.link}>
-                Organization
+              <Link to="/Organizations" className={classes.link}>
+                Organizations
               </Link>
               <Button color="inherit" onClick={logout}>
                 Logout
               </Button>
             </div>
           ) : (
-              <div/>
+            <div />
           )}
         </Toolbar>
       </AppBar>
