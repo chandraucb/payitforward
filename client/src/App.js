@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Organization from './pages/Home';
+import Organization from './pages/Organization';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Auth from './utils/auth';
@@ -73,7 +73,7 @@ function App() {
               path="/Organization"
               element={<Organization />}
             />
-            
+
             <Route path="*" element={<Home />} />
           </Routes>
           <Footer />
