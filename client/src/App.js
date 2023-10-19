@@ -52,67 +52,71 @@ function App() {
   }, []);
 
   if (isLoggedIn) {
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
-          <Routes>
-            <Route
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/Home"
-              element={<Home />}
-            />
-            <Route
-              path="/Profile"
-              element={<Profile />}
-            />
+    return (
+      <ApolloProvider client={client}>
+        <Router>
+          <div className="flex-column justify-center align-center min-100-vh bg-primary">
+            <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              <Route
+                path="/Home"
+                element={<Home />}
+              />
+              <Route
+                path="/Profile"
+                element={<Profile />}
+              />
             <Route
               path="/Project"
               element={<Project />}
-            />
-            <Route
-              path="/Organization"
-              element={<Organization />}
-            />
+            />              
+              <Route
+                path="/Organization/:organizationId"
+                element={<Organization />}
+              />
+              <Route
+                path="/Organizations"
+                element={<Organization />}
+              />
 
-            <Route path="*" element={<Home />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </ApolloProvider>
-  );
+              <Route path="*" element={<Home />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </ApolloProvider>
+    );
   } else {
 
     return (
-    <ApolloProvider client={client}>
-    <Router>
-      <div className="flex-column justify-center align-center min-100-vh bg-primary">
-        <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
-        <Routes>
-          <Route
-            path="/"
-            element={<Login />}
-          />
-          <Route
-            path="/login"
-            element={<Login />}
-          />
-          <Route
-              path="/Signup"
-              element={<Signup />}
-            />
-          <Route path="*" element={<Login />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </ApolloProvider>);
-    
+      <ApolloProvider client={client}>
+        <Router>
+          <div className="flex-column justify-center align-center min-100-vh bg-primary">
+            <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
+            <Routes>
+              <Route
+                path="/"
+                element={<Login />}
+              />
+              <Route
+                path="/login"
+                element={<Login />}
+              />
+              <Route
+                path="/Signup"
+                element={<Signup />}
+              />
+              <Route path="*" element={<Login />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </ApolloProvider>);
+
   }
 }
 
