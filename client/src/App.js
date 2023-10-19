@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Organization from './pages/Organization';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import Project from './pages/Project';
 import Auth from './utils/auth';
 import Footer from './components/Footer/index';
 
@@ -69,6 +70,10 @@ function App() {
                 path="/Profile"
                 element={<Profile />}
               />
+            <Route
+              path="/Project"
+              element={<Project />}
+            />              
               <Route
                 path="/Organization/:organizationId"
                 element={<Organization />}
@@ -88,30 +93,30 @@ function App() {
   } else {
 
     return (
-      <ApolloProvider client={client}>
-        <Router>
-          <div className="flex-column justify-center align-center min-100-vh bg-primary">
-            <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
-            <Routes>
-              <Route
-                path="/"
-                element={<Login />}
-              />
-              <Route
-                path="/login"
-                element={<Login />}
-              />
-              <Route
-                path="/Signup"
-                element={<Signup />}
-              />
-              <Route path="*" element={<Login />} />
-            </Routes>
-            <Footer />
-          </div>
-        </Router>
-      </ApolloProvider>);
-
+    <ApolloProvider client={client}>
+    <Router>
+      <div className="flex-column justify-center align-center min-100-vh bg-primary">
+        <Header isLoggedIn={isLoggedIn} handleLoginLogout={handleLoginLogout} />
+        <Routes>
+          <Route
+            path="/"
+            element={<Login />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+              path="/Signup"
+              element={<Signup />}
+            />
+          <Route path="*" element={<Login />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </ApolloProvider>);
+    
   }
 }
 
