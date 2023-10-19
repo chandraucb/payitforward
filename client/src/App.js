@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Organization from './pages/Organization';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import Project from './pages/Project';
 import Auth from './utils/auth';
 import Footer from './components/Footer/index';
 
@@ -59,16 +60,16 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Home />}
-              />
-              <Route
-                path="/Home"
-                element={<Home />}
+                element={<Profile />}
               />
               <Route
                 path="/Profile"
                 element={<Profile />}
               />
+            <Route
+              path="/Project"
+              element={<Project />}
+            />              
               <Route
                 path="/Organization/:organizationId"
                 element={<Organization />}
@@ -78,7 +79,7 @@ function App() {
                 element={<Organization />}
               />
 
-              <Route path="*" element={<Home />} />
+              <Route path="*" element={<Profile />} />
             </Routes>
             <Footer />
           </div>
