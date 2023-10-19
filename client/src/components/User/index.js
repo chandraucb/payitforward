@@ -7,9 +7,10 @@ import { QUERY_USER } from '../../utils/queries';
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: '20px',
+    paddingTop: '10%',
   },
   card: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#347068',
     padding: '10px',
     margin: '10px',
   },
@@ -38,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const User = () => {
   const classes = useStyles();
 
@@ -52,6 +52,7 @@ const User = () => {
   return (
     <div className={classes.root}>
       <Typography variant="h4" component="h1" className={classes.header}>
+
       {user.id}
       </Typography>
         <Card key={user.id} className={classes.card}>
@@ -91,5 +92,6 @@ const User = () => {
     </div>
   );
 };
+
 
 export default User;

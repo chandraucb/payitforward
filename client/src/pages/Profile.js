@@ -3,32 +3,45 @@ import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
 import Project from '../components/Project';
+<<<<<<< HEAD
 import { TextField, Button, Typography, Container } from '@material-ui/core';
 
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
+=======
+import Calendar from '../components/Calendar';
+>>>>>>> 7477270808caf09708984d6b2da5781c0716d1de
 
 const useStyles = makeStyles((theme) => ({
+
   container: {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
+<<<<<<< HEAD
     flexDirection: 'column',
     justifyContent: 'top',
     alignItems: 'center',
+=======
+    flexDirection: 'column', // Stack components vertically
+    alignItems: 'center', // Center components horizontally
+>>>>>>> 7477270808caf09708984d6b2da5781c0716d1de
     padding: '20px',
-    paddingTop: '35%',
+    paddingTop: '10%',
 
   },
-  userContainer: {
-    backgroundColor: '#f5f5f5',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-    marginTop: '20px',
-    maxWidth: '800px',
-    width: '100%',
+  userAndCalendar: {
+    display: 'flex',
+    marginBottom: '20px', 
+  },
+  user: {
+    marginRight: '20px', // Add spacing between User and Calendar
+  },
+  calendar: {
+    paddingTop: '10%',
+},
+  project: {
   },
 }));
 
@@ -50,6 +63,12 @@ const Profile = () => {
     <div className={classes.container}>
       <div>
       {<User /> }
+      <div className={classes.userAndCalendar}>
+          <User className={classes.user}/>
+          <Calendar className={classes.calender}/>
+      </div>
+      <div className={classes.project}>
+        <Project />
       </div>
       <Button
               type="submit"
@@ -62,8 +81,4 @@ const Profile = () => {
     </div>
   );
 };
-
 export default Profile;
-
-
-// First edit to Profile.js. I'm still unsure if I did this correctly. Needs more work done.
