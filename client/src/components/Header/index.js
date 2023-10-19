@@ -64,6 +64,7 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
               <Link to="/Profile" className={classes.link}>
                 User
               </Link>
+
               <Link to="/Project" className={classes.link}>
                 Project
               </Link>              
