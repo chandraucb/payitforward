@@ -8,7 +8,7 @@ import Calendar from '../components/Calendar';
 const useStyles = makeStyles((theme) => ({
 
   container: {
-    backgroundImage: `url(${backgroundImage})`,
+    //backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
@@ -47,3 +47,4 @@ const Profile = () => {
   );
 };
 export default Profile;
+
