@@ -45,7 +45,7 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
     try {
       handleLoginLogout(!isLoggedIn)
       Auth.logout();
-      navigate('/', { replace: true });
+      //navigate('/', { replace: true });
     } catch (err) {
       console.error(err);
     }
@@ -64,9 +64,9 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
               <Link to="/Project" className={classes.link}>
                 PROJECT
               </Link>              
-              <Button color="inherit" onClick={logout}>
+              <Link to="/" onClick={logout} className={classes.link}>
                 Logout
-              </Button>
+              </Link>
             </div>
           ) : (
             <div />
