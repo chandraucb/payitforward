@@ -103,6 +103,33 @@ const resolvers = {
 
             return event;
         },
+        //Add user event
+        updateUserEvent: async (parent, { id }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+            const user = await User.findOneAndUpdate(
+                { _id: new Types.ObjectId(context.user._id)},
+                { $addToSet: { events:[new Types.ObjectId(id)] } },
+                { new: true }
+            ).populate('events');
+
+            return user;
+        },
+
+        //Add user event
+        removeUserEvent: async (parent, { id }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+            const user = await User.findOneAndUpdate(
+                { _id: new Types.ObjectId(context.user._id)},
+                { $pull: { events:new Types.ObjectId(id) } },
+                { new: true }
+            ).populate('events');
+
+            return user;
+        },
         //add a post
         addPost: async (parent, { caption, date }, context) => {
             if (!context.user) {
@@ -235,19 +262,8 @@ const resolvers = {
             }
           
             return vote;
-        },
-        addMatchup: async (parent, { tech1, tech2 })  => {
-            const matchup = await Matchup.create({
-                tech1,
-                tech2,
-            });
-
-            if (!matchup) {
-                throw new Error('Unable to create matchup');
-            }
-
-            return matchup;
         }*/
+
     },
 
 };
