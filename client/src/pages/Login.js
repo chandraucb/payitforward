@@ -60,7 +60,7 @@ const Login = () => {
     try {
       const { data } = await login({ variables: { ...formState } })
       Auth.login(data.login.token);
-      navigate('/Home');
+      navigate('/');
     } catch (e) {
       console.error(e);
       setError(true)

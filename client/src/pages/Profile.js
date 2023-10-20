@@ -12,6 +12,8 @@ import { QUERY_USER } from '../utils/queries';
 
 import Calendar from '../components/Calendar';
 
+import { Scheduler } from "@aldabil/react-scheduler";
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -59,7 +61,7 @@ const Profile = () => {
     event.preventDefault();
 
     const mutationResponse = await createEvent({
-      variables: { title: "test", eventStart: new Date(), eventEnd: new Date()},
+      variables: { title: "Sample Project", eventStart: new Date(), eventEnd: new Date()},
     });
 
   }
@@ -76,6 +78,26 @@ const Profile = () => {
             >
               Create Event
             </Button>
+      <Scheduler
+  view="month"
+  events={[
+    {
+      event_id: 1,
+      title: "Sample Project",
+      start: new Date("2023/10/19 09:30"),
+      end: new Date("2023/10/20 10:30"),
+    },
+    {
+      event_id: 2,
+      title: "Sample Project",
+      start: new Date("2021/10/21 10:00"),
+      end: new Date("2021/10/22 11:00"),
+    },
+  ]}
+/>
+
+
+      
     </div>
     </div>
   );

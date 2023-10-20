@@ -49,7 +49,7 @@ function App() {
   };
   useEffect(() => {
     Auth.loggedIn() ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  }, []);
+  }, [isLoggedIn]);
 
   if (isLoggedIn) {
     return (
