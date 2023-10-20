@@ -80,7 +80,7 @@ const Project = () => {
             </Typography>
             <Grid container spacing={2}>
               {project.sponsors.map((sponsor) => (
-                <Grid item xs={12} sm={6} md={4} key={sponsor._id}>
+                <Grid item xs={6} key={sponsor._id}>
                   <Card className={classes.card}>
                     <CardContent>
                       <Avatar
@@ -97,18 +97,6 @@ const Project = () => {
                       <Typography variant="body1" className={classes.content}>
                         {sponsor.email}
                       </Typography>
-                      <Typography variant="subtitle1" className={classes.subtitle}>
-                        Sponsor Events:
-                      </Typography>
-                      <ul>
-                        {sponsor.events.map((event) => (
-                          <li key={event._id}>
-                            {event.title}
-                            <p>Start: {event.start}</p>
-                            <p>End: {event.end}</p>
-                          </li>
-                        ))}
-                      </ul>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -119,7 +107,7 @@ const Project = () => {
             </Typography>
             <Grid container spacing={2}>
               {project.volunteers.map((volunteer) => (
-                <Grid item xs={12} sm={6} md={4} key={volunteer._id}>
+                <Grid item xs={6} key={volunteer._id}>
                   <Card className={classes.card}>
                     <CardContent>
                       <Avatar
@@ -136,18 +124,6 @@ const Project = () => {
                       <Typography variant="body1" className={classes.content}>
                         {volunteer.email}
                       </Typography>
-                      <Typography variant="subtitle1" className={classes.subtitle}>
-                        Volunteer Events:
-                      </Typography>
-                      <ul>
-                        {volunteer.events.map((event) => (
-                          <li key={event._id}>
-                            {event.title}
-                            <p>Start: {event.start}</p>
-                            <p>End: {event.end}</p>
-                          </li>
-                        ))}
-                      </ul>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -160,8 +136,8 @@ const Project = () => {
               {project.schedule.map((event) => (
                 <li key={event._id}>
                   {event.title}
-                  <p>Start: {event.start}</p>
-                  <p>End: {event.end}</p>
+                  <br/>
+                  {new Date(event.eventStart).toLocaleDateString()} - {new Date(event.eventEnd).toLocaleDateString()}
                 </li>
               ))}
             </ul>
@@ -175,64 +151,32 @@ const Project = () => {
 const projects = [
   {
     _id: 1,
-    name: "Project 1",
-    description: "Description of Project 1",
+    name: "Sample Project",
+    description: "World of wonders",
     address: "123 Main St, City 1",
     goal: "Goal of Project 1",
     sponsors: [
       {
         _id: 1,
-        username: "SponsorUser1",
-        email: "sponsor1@example.com",
-        events: [
-          {
-            _id: 1,
-            title: "Sponsor Event 1",
-            start: "2023-10-15T08:00:00Z",
-            end: "2023-10-15T10:00:00Z",
-          },
-        ],
+        username: "Chandra Mohan",
+        email: "chandra@gmail.com",
       },
       {
         _id: 2,
-        username: "SponsorUser2",
-        email: "sponsor2@example.com",
-        events: [
-          {
-            _id: 2,
-            title: "Sponsor Event 2",
-            start: "2023-10-16T10:00:00Z",
-            end: "2023-10-16T12:00:00Z",
-          },
-        ],
+        username: "Junel Balbin",
+        email: "junel@gmail.com",
       },
     ],
     volunteers: [
       {
         _id: 3,
-        username: "VolunteerUser1",
-        email: "volunteer1@example.com",
-        events: [
-          {
-            _id: 3,
-            title: "Volunteer Event 1",
-            start: "2023-10-15T12:00:00Z",
-            end: "2023-10-15T14:00:00Z",
-          },
-        ],
+        username: "Kevin Gagante",
+        email: "kevin@gmail.com",
       },
       {
         _id: 4,
-        username: "VolunteerUser2",
-        email: "volunteer2@example.com",
-        events: [
-          {
-            _id: 4,
-            title: "Volunteer Event 2",
-            start: "2023-10-16T14:00:00Z",
-            end: "2023-10-16T16:00:00Z",
-          },
-        ],
+        username: "Oksana Tatsyak",
+        email: "oksana@gmail.com",
       },
     ],
     schedule: [
@@ -240,107 +184,109 @@ const projects = [
         _id: 5,
         event_id: "event1",
         title: "Event 1",
-        start: "2023-10-15T12:00:00Z",
-        end: "2023-10-15T14:00:00Z",
+        eventStart: "2023-10-19T19:48:53.871+00:00",
+        eventEnd: "2023-10-19T19:48:53.871+00:00",
       },
       {
         _id: 6,
         event_id: "event2",
         title: "Event 2",
-        start: "2023-10-16T15:00:00Z",
-        end: "2023-10-16T17:00:00Z",
+        eventStart: "2023-10-20T19:48:53.871+00:00",
+        eventEnd: "2023-10-20T19:48:53.871+00:00",
       },
     ],
   },
   {
-    _id: 2,
-    name: "Project 2",
-    description: "Description of Project 2",
-    address: "456 Elm St, City 2",
-    goal: "Goal of Project 2",
+    _id: 30,
+    name: "Sample Project 3",
+    description: "World of wonders 3",
+    address: "123 Main St, City ",
+    goal: "Goal of Project 1",
     sponsors: [
       {
-        _id: 7,
-        username: "SponsorUser3",
-        email: "sponsor3@example.com",
-        events: [
-          {
-            _id: 8,
-            title: "Sponsor Event 3",
-            start: "2023-11-15T10:00:00Z",
-            end: "2023-11-15T12:00:00Z",
-          },
-        ],
+        _id: 1,
+        username: "Chandra Mohan",
+        email: "chandra@gmail.com",
+      },
+      {
+        _id: 2,
+        username: "Junel Balbin",
+        email: "junel@gmail.com",
       },
     ],
     volunteers: [
       {
-        _id: 9,
-        username: "VolunteerUser3",
-        email: "volunteer3@example.com",
-        events: [
-          {
-            _id: 10,
-            title: "Volunteer Event 3",
-            start: "2023-11-15T12:00:00Z",
-            end: "2023-11-15T14:00:00Z",
-          },
-        ],
+        _id: 3,
+        username: "Kevin Gagante",
+        email: "kevin@gmail.com",
+      },
+      {
+        _id: 4,
+        username: "Oksana Tatsyak",
+        email: "oksana@gmail.com",
       },
     ],
     schedule: [
       {
-        _id: 11,
-        event_id: "event3",
-        title: "Event 3",
-        start: "2023-11-15T12:00:00Z",
-        end: "2023-11-15T14:00:00Z",
+        _id: 5,
+        event_id: "event1",
+        title: "Event 1",
+        eventStart: "2023-10-19T19:48:53.871+00:00",
+        eventEnd: "2023-10-19T19:48:53.871+00:00",
+      },
+      {
+        _id: 6,
+        event_id: "event2",
+        title: "Event 2",
+        eventStart: "2023-10-20T19:48:53.871+00:00",
+        eventEnd: "2023-10-20T19:48:53.871+00:00",
       },
     ],
   },
   {
-    _id: 3,
-    name: "Project 3",
-    description: "Description of Project 3",
-    address: "789 Oak St, City 3",
-    goal: "Goal of Project 3",
+    _id: 10,
+    name: "Sample Project 2",
+    description: "World of wonders 2",
+    address: "123 Main St, City ",
+    goal: "Goal of Project 1",
     sponsors: [
       {
-        _id: 7,
-        username: "SponsorUser3",
-        email: "sponsor3@example.com",
-        events: [
-          {
-            _id: 8,
-            title: "Sponsor Event 3",
-            start: "2023-11-15T10:00:00Z",
-            end: "2023-11-15T12:00:00Z",
-          },
-        ],
+        _id: 1,
+        username: "Chandra Mohan",
+        email: "chandra@gmail.com",
+      },
+      {
+        _id: 2,
+        username: "Junel Balbin",
+        email: "junel@gmail.com",
       },
     ],
     volunteers: [
       {
-        _id: 9,
-        username: "VolunteerUser3",
-        email: "volunteer3@example.com",
-        events: [
-          {
-            _id: 10,
-            title: "Volunteer Event 3",
-            start: "2023-11-15T12:00:00Z",
-            end: "2023-11-15T14:00:00Z",
-          },
-        ],
+        _id: 3,
+        username: "Kevin Gagante",
+        email: "kevin@gmail.com",
+      },
+      {
+        _id: 4,
+        username: "Oksana Tatsyak",
+        email: "oksana@gmail.com",
       },
     ],
     schedule: [
       {
-        _id: 11,
-        event_id: "event3",
-        title: "Event 3",
-        start: "2023-11-15T12:00:00Z",
-        end: "2023-11-15T14:00:00Z",
+        _id: 5,
+        event_id: "event1",
+        title: "Event 1",
+        eventStart: "2023-10-19T19:48:53.871+00:00",
+        eventEnd: "2023-10-19T19:48:53.871+00:00",
+      },
+      {
+        _id: 6,
+        event_id: "event2",
+        title: "Event 2",
+        eventStart: "2023-10-20T19:48:53.871+00:00",
+        eventEnd: "2023-10-20T19:48:53.871+00:00",
       },
     ],
   },

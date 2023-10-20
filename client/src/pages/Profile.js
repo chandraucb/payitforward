@@ -6,8 +6,9 @@ import Project from '../components/Project';
 
 import { TextField, Button, Typography, Container } from '@material-ui/core';
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
+import { QUERY_USER } from '../utils/queries';
 
 import Calendar from '../components/Calendar';
 
@@ -42,9 +43,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Profile = () => {
+  
   const classes = useStyles();
-
   const [createEvent, { error }] = useMutation(ADD_EVENT);
+  const { loading, err, data } = useQuery(QUERY_USER);
+
+  if (loading) return <p>Loading...</p>;
+  if (err) return <p>Error: {err.message}</p>;
+
+  const user = data.user;
+
+
 
   const handleCreate = async (event) => {
     event.preventDefault();
@@ -57,17 +66,8 @@ const Profile = () => {
 
   return (
     <div className={classes.container}>
-
       <div>
-      {<User /> }
-
-      <div className={classes.userAndCalendar}>
-          <User className={classes.user}/>
-          <Calendar className={classes.calender}/>
-      </div>
-      <div className={classes.project}>
-        <Project />
-      </div>
+      <User user={{user}}/> 
       <Button
               type="submit"
               variant="contained"
@@ -76,6 +76,7 @@ const Profile = () => {
             >
               Create Event
             </Button>
+    </div>
     </div>
   );
 };
