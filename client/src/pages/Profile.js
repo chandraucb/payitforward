@@ -2,46 +2,63 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
-import Project from '../components/Project';
-
+import Event from '../components/Event';
 import { TextField, Button, Typography, Container } from '@material-ui/core';
-
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_USER } from '../utils/queries';
-
 import Calendar from '../components/Calendar';
-
 import { Scheduler } from "@aldabil/react-scheduler";
 
 
 const useStyles = makeStyles((theme) => ({
 
   container: {
-    backgroundImage: `url(${backgroundImage})`,
+    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
     display: 'flex',
-
-    flexDirection: 'column',
-    justifyContent: 'top',
     alignItems: 'center',
-
     padding: '20px',
     paddingTop: '10%',
-
   },
-  userAndCalendar: {
+  leftContainer: {
     display: 'flex',
-    marginBottom: '20px', 
+    flexDirection: 'column',
+    marginRight: '20px',
+    marginTop: '-30%',
   },
   user: {
-    marginRight: '20px', // Add spacing between User and Calendar
+    width: '100%',
+  },
+  submit: {
+    margin: '',
+    backgroundColor: '#347068',
+    color: '#fff',
+    marginLeft: '30px',
+    '&:hover': {
+      backgroundColor: '#347068',
+      color: '#fff',
+    },
+    width: '30%',
+    textAlign: 'center',
+    fontSize: '10px',
+    marginTop: '-20px',
+
+  },
+  events: {
+    marginRight: '20px',
+  },
+  title: {
+    textAlign: 'center',
+    marginBottom: '20px',
   },
   calendar: {
+    flex: 1, // Add the flex property to the calendar class
+    justifyContent: 'center', // Add the justifyContent property to the calendar class
     paddingTop: '10%',
-},
-  project: {
+    marginLeft: '20px', // Add the marginLeft property to the calendar class
+
   },
 }));
 const Profile = () => {
@@ -68,8 +85,8 @@ const Profile = () => {
 
   return (
     <div className={classes.container}>
-      <div>
-      <User user={{user}}/> 
+      <div className={classes.leftContainer}>
+      <User className={classes.user} user={{user}}/> 
       <Button
               type="submit"
               variant="contained"
@@ -78,6 +95,10 @@ const Profile = () => {
             >
               Create Event
             </Button>
+            {/* <Event user={user} /> */}
+      </div>
+      <div className={classes.calendar}>
+      <h3 className={classes.title}>Heres your Schedule</h3>
       <Scheduler
   view="month"
   events={[
@@ -95,9 +116,6 @@ const Profile = () => {
     },
   ]}
 />
-
-
-      
     </div>
     </div>
   );
