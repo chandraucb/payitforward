@@ -1,20 +1,33 @@
-import React from 'react';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { DataGrid } from "@mui/x-data-grid";
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Card, CardContent, Avatar, Grid } from '@material-ui/core';
+import { Avatar, Button, Typography, Container, Card } from '@material-ui/core';
+import DialogAddEvent from '../DialogAddEvent'
+import DialogAddPost from '../DialogAddPost'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '20px',
-    paddingTop: '10%',
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#347068', // Green background color
+    minHeight: '100vh', // Make the container at least full height
+    padding: '20px',
   },
   card: {
-    backgroundColor: '#347068',
-    padding: '10px',
-    margin: '10px',
+    backgroundColor: 'white', // Green background color for cards
+    color: '#347068', // White text color for cards
+    padding: '20px',
+    margin: '20px',
+    alignItems: 'center', // Center horizontally
+
   },
   header: {
     textAlign: 'center',
     marginBottom: '20px',
+    justifyContent: 'center',
+
   },
   avatar: {
     width: '100px',
@@ -23,60 +36,151 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '20px',
   },
   title: {
+    textAlign: 'center',
     fontSize: '24px',
     fontWeight: 'bold',
     marginBottom: '10px',
   },
   subtitle: {
+    textAlign: 'center',
     fontSize: '16px',
     fontWeight: 'bold',
     marginBottom: '5px',
   },
   content: {
+    textAlign: 'center',
     marginLeft: '20px',
   },
 }));
 
-
-const User = ({user}) => {
-  user = user.user
+export default function User({user}) {
   const classes = useStyles();
+  const [clickedRow, setClickedRow] = React.useState();
+  const onButtonClick = (e, row) => {
+    e.stopPropagation();
+    setClickedRow(row);
+  };
+
+  const columns = [
+    { field: "title", headerName: "Event", width: 200  },
+    {
+      field: "eventStart",
+      headerName: "Start Date",
+      width: 120
+    },
+    {
+      field: "eventEnd",
+      headerName: "End Date",
+      width: 120
+    },
+    {
+      field: "postButton",
+      headerName: "",
+      description: "Actions column.",
+      sortable: false,
+      width: 120,
+      renderCell: (params) => {
+        return (
+          <DialogAddPost row={params.row}/>
+        );
+      }
+    },
+
+    {
+      field: "deleteButton",
+      headerName: "",
+      description: "Actions column.",
+      sortable: false,
+      width: 120,
+      renderCell: (params) => {
+        return (
+          <Button
+            onClick={(e) => onButtonClick(e, params.row)}
+            variant="contained"
+          >
+            Delete
+          </Button>
+        );
+      }
+    }
+  ];
+
+  const events = user.user.events.map((event) =>{ 
+
+    let mapEvent = {...event}
+    
+
+    if (event.eventStart) {
+      mapEvent.eventStart = new Date(event.eventStart).toLocaleDateString()
+    }
+
+    if (event.eventEnd) {
+      mapEvent.eventEnd = new Date(event.eventEnd).toLocaleDateString()
+    }
+
+    return mapEvent
+  })
+  console.log (events)
+
+  function getRowId(row) {
+    return row._id;
+  }
+ 
+
+  const rows = [
+    {
+      "title": "Event 2",
+      "eventStart": new Date("2023-10-19T18:21:25.437Z").toLocaleDateString(),
+      "eventEnd":  "2023-10-19T18:21:25.437Z",
+      "id": "1"
+    },
+    {
+      "title": "test",
+      "eventStart": "2023-10-19T18:21:25.437Z",
+      "eventEnd": "2023-10-19T18:21:25.437Z",
+      "id": "2"
+    },
+    {
+      "title": "test",
+      "eventStart": "2023-10-19T18:53:36.954Z",
+      "eventEnd": "2023-10-19T18:53:36.954Z",
+      "id": "3"
+    }
+  ];
 
   return (
-    <div className={classes.root}>
-      <Typography variant="h4" component="h1" className={classes.header}>
+    <div>
+      <div>
+      <Card className={classes.card}>
 
-      {user.id}
-      </Typography>
-
-        <Card key={user.id} className={classes.card}>
-          <CardContent>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={4}>
-                {/* will randomly generate an avatar */}
-                <Avatar alt={user.username} src={`https://i.pravatar.cc/150?img=${user.id}`} className={classes.avatar} />
-              </Grid>
-              <Grid item xs={12} sm={8}>
-                <Typography className={classes.title} variant="h2" component="h2">
-                  {user.username}
-                </Typography>
-                <Typography className={classes.subtitle} color="textSecondary">
-                  Email:
-                </Typography>
-                <Typography className={classes.content} variant="body2" component="p">
-                  {user.email}
-                </Typography>
-
-              </Grid>
-
-            </Grid>
-            
-        </CardContent>
+      <Avatar
+          alt={user.user.username}
+          src={`https://i.pravatar.cc/150?u=${user._id}`}
+          className={classes.avatar}
+        />
+        <Typography variant="h6" component="h3" className={classes.title}>
+            {user.user.username}
+        </Typography>
+        <Typography variant="body1" className={classes.content}>
+          {user.user.email}
+        </Typography>
       </Card>
+      </div>
+      <div >
+      <Card className={classes.card}>
+          <DataGrid sx={{    backgroundColor: 'white', // Green background color for cards
+    color: '#347068',}}
+            rows={events}
+            columns={columns}
+            pageSizeOptions={[]}
+            getRowId={getRowId}
+          />
+        </Card>
+        {clickedRow?clickedRow._id:null}
+      </div>
+      <div>
+          <DialogAddEvent className={classes.card}/>
+      </div>
     </div>
   );
-};
-
-
-
-export default User;
+}

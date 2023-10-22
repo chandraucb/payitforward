@@ -2,56 +2,52 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
-import Event from '../components/Event';
+
+
+
 import { TextField, Button, Typography, Container } from '@material-ui/core';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_USER } from '../utils/queries';
-import Calendar from '../components/Calendar';
-import { Scheduler } from "@aldabil/react-scheduler";
+
+import moment from "moment";
+
+//import { Scheduler } from "@aldabil/react-scheduler";
+
+import EventCalender from '../components/Calender'
+
+
 
 
 const useStyles = makeStyles((theme) => ({
 
   container: {
-    // backgroundImage: `url(${backgroundImage})`,
+
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundAttachment: `fixed`,
+
     backgroundSize: 'cover',
-    height: '100vh',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    minHeight: '100vh',
+    minWidth: '100vw',
     display: 'flex',
+
+    //flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: '20px',
-    paddingTop: '10%',
+
+
   },
   leftContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    marginRight: '20px',
-    marginTop: '-30%',
+
+    padding: '20px', 
   },
   user: {
-    width: '100%',
-  },
-  submit: {
-    margin: '',
-    backgroundColor: '#347068',
-    color: '#fff',
-    marginLeft: '30px',
-    '&:hover': {
-      backgroundColor: '#347068',
-      color: '#fff',
-    },
-    width: '30%',
-    textAlign: 'center',
-    fontSize: '10px',
-    marginTop: '-20px',
+    padding: '20px', // Add spacing between User and Calendar
 
-  },
-  events: {
-    marginRight: '20px',
-  },
-  title: {
-    textAlign: 'center',
-    marginBottom: '20px',
   },
   calendar: {
     flex: 1, // Add the flex property to the calendar class
@@ -83,40 +79,30 @@ const Profile = () => {
 
   }
 
+
+  const events = [
+
+    {
+      start: moment('10/19/23'),
+      end: moment('10/19/23')
+       ,
+      title: "test"
+    },
+    {
+
+      start: moment('10/19/23'),
+      end: moment('10/19/23')
+       ,
+      title: "test"
+    }
+  ]
+
+
   return (
     <div className={classes.container}>
-      <div className={classes.leftContainer}>
       <User className={classes.user} user={{user}}/> 
-      <Button
-              type="submit"
-              variant="contained"
-              className={classes.submit}
-              onClick={handleCreate}
-            >
-              Create Event
-            </Button>
-            {/* <Event user={user} /> */}
-      </div>
-      <div className={classes.calendar}>
-      <h3 className={classes.title}>Heres your Schedule</h3>
-      <Scheduler
-  view="month"
-  events={[
-    {
-      event_id: 1,
-      title: "Sample Project",
-      start: new Date("2023/10/19 09:30"),
-      end: new Date("2023/10/20 10:30"),
-    },
-    {
-      event_id: 2,
-      title: "Sample Project",
-      start: new Date("2021/10/21 10:00"),
-      end: new Date("2021/10/22 11:00"),
-    },
-  ]}
-/>
-    </div>
+      <EventCalender events={events}/>
+
     </div>
   );
 };

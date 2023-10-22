@@ -60,14 +60,14 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
           {isLoggedIn ? (
             <div>
               <Link to="/Profile" className={classes.link}>
-                PROFILE
+                Profile
               </Link>
               <Link to="/Project" className={classes.link}>
-                PROJECT
+                Project
               </Link>              
-              <Button color="inherit" onClick={logout}>
+              <Link to="/" className={classes.link} onClick={logout}>
                 Logout
-              </Button>
+              </Link>
             </div>
           ) : (
             <div />
