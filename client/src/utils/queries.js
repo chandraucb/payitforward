@@ -7,6 +7,7 @@ query Query {
       title
       eventStart
       eventEnd
+      _id
     }
     username
     email

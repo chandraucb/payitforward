@@ -2,41 +2,43 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
-import Project from '../components/Project';
 
 import { TextField, Button, Typography, Container } from '@material-ui/core';
 
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_USER } from '../utils/queries';
+import moment from "moment";
 
-import Calendar from '../components/Calendar';
+//import { Scheduler } from "@aldabil/react-scheduler";
 
-import { Scheduler } from "@aldabil/react-scheduler";
+import EventCalender from '../components/Calender'
+
 
 
 const useStyles = makeStyles((theme) => ({
 
   container: {
     backgroundImage: `url(${backgroundImage})`,
+    backgroundAttachment: `fixed`,
     backgroundSize: 'cover',
-    height: '100vh',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    minHeight: '100vh',
+    minWidth: '100vw',
     display: 'flex',
-
-    flexDirection: 'column',
-    justifyContent: 'top',
+    //flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-
     padding: '20px',
-    paddingTop: '10%',
 
   },
   userAndCalendar: {
     display: 'flex',
-    marginBottom: '20px', 
+    padding: '20px', 
   },
   user: {
-    marginRight: '20px', // Add spacing between User and Calendar
+    padding: '20px', // Add spacing between User and Calendar
   },
   calendar: {
     paddingTop: '10%',
@@ -66,39 +68,26 @@ const Profile = () => {
 
   }
 
+  const events = [
+    {
+      start: moment('10/19/23'),
+      end: moment('10/19/23')
+       ,
+      title: "test"
+    },
+    {
+      start: moment('10/19/23'),
+      end: moment('10/19/23')
+       ,
+      title: "test"
+    }
+  ]
+
+
   return (
     <div className={classes.container}>
-      <div>
-      <User user={{user}}/> 
-      <Button
-              type="submit"
-              variant="contained"
-              className={classes.submit}
-              onClick={handleCreate}
-            >
-              Create Event
-            </Button>
-      <Scheduler
-  view="month"
-  events={[
-    {
-      event_id: 1,
-      title: "Sample Project",
-      start: new Date("2023/10/19 09:30"),
-      end: new Date("2023/10/20 10:30"),
-    },
-    {
-      event_id: 2,
-      title: "Sample Project",
-      start: new Date("2021/10/21 10:00"),
-      end: new Date("2021/10/22 11:00"),
-    },
-  ]}
-/>
-
-
-      
-    </div>
+      <User className={classes.user} user={{user}}/> 
+      <EventCalender events={events}/>
     </div>
   );
 };
