@@ -3,11 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/background.jpeg';
 import User from '../components/User';
 
-import { TextField, Button, Typography, Container } from '@material-ui/core';
 
+
+import { TextField, Button, Typography, Container } from '@material-ui/core';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EVENT } from '../utils/mutations';
 import { QUERY_USER } from '../utils/queries';
+
 import moment from "moment";
 
 //import { Scheduler } from "@aldabil/react-scheduler";
@@ -16,34 +18,43 @@ import EventCalender from '../components/Calender'
 
 
 
+
 const useStyles = makeStyles((theme) => ({
 
   container: {
+
     backgroundImage: `url(${backgroundImage})`,
     backgroundAttachment: `fixed`,
+
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundAttachment: 'fixed',
     minHeight: '100vh',
     minWidth: '100vw',
     display: 'flex',
+
     //flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     padding: '20px',
 
+
   },
-  userAndCalendar: {
+  leftContainer: {
     display: 'flex',
+
     padding: '20px', 
   },
   user: {
     padding: '20px', // Add spacing between User and Calendar
+
   },
   calendar: {
+    flex: 1, // Add the flex property to the calendar class
+    justifyContent: 'center', // Add the justifyContent property to the calendar class
     paddingTop: '10%',
-},
-  project: {
+    marginLeft: '20px', // Add the marginLeft property to the calendar class
+
   },
 }));
 const Profile = () => {
@@ -68,7 +79,9 @@ const Profile = () => {
 
   }
 
+
   const events = [
+
     {
       start: moment('10/19/23'),
       end: moment('10/19/23')
@@ -76,6 +89,7 @@ const Profile = () => {
       title: "test"
     },
     {
+
       start: moment('10/19/23'),
       end: moment('10/19/23')
        ,
@@ -88,6 +102,7 @@ const Profile = () => {
     <div className={classes.container}>
       <User className={classes.user} user={{user}}/> 
       <EventCalender events={events}/>
+
     </div>
   );
 };
