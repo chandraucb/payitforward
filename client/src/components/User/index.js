@@ -1,11 +1,12 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Typography, Container, Card } from '@material-ui/core';
 import DialogAddEvent from '../DialogAddEvent'
 import DialogAddPost from '../DialogAddPost'
 
+import { useMutation } from '@apollo/client';
+import { REMOVE_USER_EVENT } from '../../utils/mutations';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,11 +56,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function User({user}) {
   const classes = useStyles();
-  const [clickedRow, setClickedRow] = React.useState();
-  const onButtonClick = (e, row) => {
-    e.stopPropagation();
-    setClickedRow(row);
-  };
+
+  const [deleteEvent, { error }] = useMutation(REMOVE_USER_EVENT); 
+
+  const handleDelete = async (event, row) => {
+    event.preventDefault();
+    console.log(row._id)
+    const mutationResponse = await deleteEvent({
+      variables: {
+        removeUserEventId:row._id },
+    });
+    console.log(error)
+    window.location.reload();
+  }
 
   const columns = [
     { field: "title", headerName: "Event", width: 200  },
@@ -95,7 +104,7 @@ export default function User({user}) {
       renderCell: (params) => {
         return (
           <Button
-            onClick={(e) => onButtonClick(e, params.row)}
+            onClick={(e) => handleDelete(e, params.row)}
             variant="contained"
           >
             Delete
@@ -108,16 +117,12 @@ export default function User({user}) {
   const events = user.user.events.map((event) =>{ 
 
     let mapEvent = {...event}
-    
-
     if (event.eventStart) {
       mapEvent.eventStart = new Date(event.eventStart).toLocaleDateString()
     }
-
     if (event.eventEnd) {
       mapEvent.eventEnd = new Date(event.eventEnd).toLocaleDateString()
     }
-
     return mapEvent
   })
   console.log (events)
@@ -126,28 +131,6 @@ export default function User({user}) {
     return row._id;
   }
  
-
-  const rows = [
-    {
-      "title": "Event 2",
-      "eventStart": new Date("2023-10-19T18:21:25.437Z").toLocaleDateString(),
-      "eventEnd":  "2023-10-19T18:21:25.437Z",
-      "id": "1"
-    },
-    {
-      "title": "test",
-      "eventStart": "2023-10-19T18:21:25.437Z",
-      "eventEnd": "2023-10-19T18:21:25.437Z",
-      "id": "2"
-    },
-    {
-      "title": "test",
-      "eventStart": "2023-10-19T18:53:36.954Z",
-      "eventEnd": "2023-10-19T18:53:36.954Z",
-      "id": "3"
-    }
-  ];
-
   return (
     <div>
       <div>
@@ -174,9 +157,11 @@ export default function User({user}) {
             columns={columns}
             pageSizeOptions={[]}
             getRowId={getRowId}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 3 } },
+            }}
           />
         </Card>
-        {clickedRow?clickedRow._id:null}
       </div>
       <div>
           <DialogAddEvent className={classes.card}/>

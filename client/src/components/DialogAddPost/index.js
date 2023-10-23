@@ -89,7 +89,7 @@ export default function DialogAddPost({row}) {
             autoFocus
             margin="dense"
             id="caption"
-            label="Post"
+            label="Title"
             type="text"
             fullWidth
             variant="standard"

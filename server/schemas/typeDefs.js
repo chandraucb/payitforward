@@ -68,6 +68,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addEvent (title: String!, eventStart: String, eventEnd: String): Event
+    addUserEvent (title: String!, eventStart: String, eventEnd: String): Event
     updateUserEvent(id: ID!): User
     removeUserEvent(id: ID!): User
     addPost(caption: String!, date: String!): Post
