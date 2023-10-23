@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Card, CardContent, Avatar, Grid } from '@material-ui/core';
+import { DataGrid } from "@mui/x-data-grid";
+import Button from '@mui/material/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,250 +48,130 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Project = () => {
+const Project = ({project}) => {
   const classes = useStyles();
+  console.log(project)
+
+  const handleDelete =(event, row) => {
+
+  }
+
+  const columns = [
+    { field: "username", headerName: "Name", width: 200  },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 200
+    },
+    {
+      field: "deleteButton",
+      headerName: "",
+      description: "Actions column.",
+      sortable: false,
+      width: 120,
+      renderCell: (params) => {
+        return (
+          <Button
+            onClick={(e) => handleDelete(e, params.row)}
+            variant="contained"
+          >
+            Remove
+          </Button>
+        );
+      }
+    }
+  ];
+
+  let key = 0;
+
+  function getRowId(row) {
+    return key++;
+  }
 
   return (
     <div className={classes.root}>
-      {projects.map((project) => (
+
         <Card key={project._id} className={classes.card}>
+          <div>
+          <Button
+            onClick={(e) => handleDelete(e)}
+            variant="contained"
+          >
+            Add Sponsors
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            onClick={(e) => handleDelete(e)}
+            variant="contained"
+          >
+            Add Volunteers
+          </Button>
+          &nbsp;&nbsp;
+          <Button
+            onClick={(e) => handleDelete(e)}
+            variant="contained"
+          >
+            Donate
+          </Button>
+          </div>
           <CardContent>
             <Typography variant="h2" component="h2" className={classes.title}>
               {project.name}
             </Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
-              Description:
-            </Typography>
-            <Typography variant="body1" className={classes.content}>
-              {project.description}
-            </Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
-              Address:
-            </Typography>
-            <Typography variant="body1" className={classes.content}>
-              {project.address}
-            </Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
-              Goal:
-            </Typography>
-            <Typography variant="body1" className={classes.content}>
-              {project.goal}
-            </Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
-              Sponsors:
-            </Typography>
-            <Grid container spacing={2}>
-              {project.sponsors.map((sponsor) => (
-                <Grid item xs={6} key={sponsor._id}>
-                  <Card className={classes.card}>
-                    <CardContent>
-                      <Avatar
-                        alt={sponsor.username}
-                        src={`https://i.pravatar.cc/150?u=${sponsor._id}`}
-                        className={classes.avatar}
-                      />
-                      <Typography variant="h6" component="h3" className={classes.title}>
-                        {sponsor.username}
-                      </Typography>
-                      <Typography variant="subtitle1" className={classes.subtitle}>
-                        Email:
-                      </Typography>
-                      <Typography variant="body1" className={classes.content}>
-                        {sponsor.email}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-            <Typography variant="subtitle1" className={classes.subtitle}>
-              Volunteers:
-            </Typography>
-            <Grid container spacing={2}>
-              {project.volunteers.map((volunteer) => (
-                <Grid item xs={6} key={volunteer._id}>
-                  <Card className={classes.card}>
-                    <CardContent>
-                      <Avatar
-                        alt={volunteer.username}
-                        src={`https://i.pravatar.cc/150?u=${volunteer._id}`}
-                        className={classes.avatar}
-                      />
-                      <Typography variant="h6" component="h3" className={classes.title}>
-                        {volunteer.username}
-                      </Typography>
-                      <Typography variant="subtitle1" className={classes.subtitle}>
-                        Email:
-                      </Typography>
-                      <Typography variant="body1" className={classes.content}>
-                        {volunteer.email}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-            <Typography variant="subtitle1" className={classes.subtitle}>
+            <br/>
+            <Typography variant="h2" className={classes.subtitle}>
               Schedule:
             </Typography>
+            <br/>
             <ul>
-              {project.schedule.map((event) => (
+              {project.schedule?project.schedule.map((event) => (
                 <li key={event._id}>
                   {event.title}
                   <br/>
                   {new Date(event.eventStart).toLocaleDateString()} - {new Date(event.eventEnd).toLocaleDateString()}
                 </li>
-              ))}
+              )):null}
             </ul>
+   
+            <Typography variant="h2" className={classes.subtitle}>
+              Sponsors:
+            </Typography>
+            <br/>
+            <Grid container spacing={2}>
+              {project.sponsors?
+                  <DataGrid sx={{    backgroundColor: 'white', // Green background color for cards
+            color: '#347068',}}
+                    rows={project.sponsors}
+                    columns={columns}
+                    pageSizeOptions={[]}
+                    getRowId={getRowId}
+                    initialState={{
+                      pagination: { paginationModel: { pageSize: 3 } },
+                    }}
+                  />:<div/>}
+            </Grid>
+            <br/>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Volunteers:
+            </Typography>
+            <br/>
+            <Grid container spacing={2}>
+              {project.volunteers?
+                  <DataGrid sx={{    backgroundColor: 'white', // Green background color for cards
+            color: '#347068',}}
+                    rows={project.volunteers}
+                    columns={columns}
+                    pageSizeOptions={[]}
+                    getRowId={getRowId}
+                    initialState={{
+                      pagination: { paginationModel: { pageSize: 3 } },
+                    }}
+                  />:<div/>}
+            </Grid>
           </CardContent>
         </Card>
-      ))}
     </div>
   );
 };
-
-const projects = [
-  {
-    _id: 1,
-    name: "Sample Project",
-    description: "World of wonders",
-    address: "123 Main St, City 1",
-    goal: "Goal of Project 1",
-    sponsors: [
-      {
-        _id: 1,
-        username: "Chandra Mohan",
-        email: "chandra@gmail.com",
-      },
-      {
-        _id: 2,
-        username: "Junel Balbin",
-        email: "junel@gmail.com",
-      },
-    ],
-    volunteers: [
-      {
-        _id: 3,
-        username: "Kevin Gagante",
-        email: "kevin@gmail.com",
-      },
-      {
-        _id: 4,
-        username: "Oksana Tatsyak",
-        email: "oksana@gmail.com",
-      },
-    ],
-    schedule: [
-      {
-        _id: 5,
-        event_id: "event1",
-        title: "Event 1",
-        eventStart: "2023-10-19T19:48:53.871+00:00",
-        eventEnd: "2023-10-19T19:48:53.871+00:00",
-      },
-      {
-        _id: 6,
-        event_id: "event2",
-        title: "Event 2",
-        eventStart: "2023-10-20T19:48:53.871+00:00",
-        eventEnd: "2023-10-20T19:48:53.871+00:00",
-      },
-    ],
-  },
-  {
-    _id: 30,
-    name: "Sample Project 3",
-    description: "World of wonders 3",
-    address: "123 Main St, City ",
-    goal: "Goal of Project 1",
-    sponsors: [
-      {
-        _id: 1,
-        username: "Chandra Mohan",
-        email: "chandra@gmail.com",
-      },
-      {
-        _id: 2,
-        username: "Junel Balbin",
-        email: "junel@gmail.com",
-      },
-    ],
-    volunteers: [
-      {
-        _id: 3,
-        username: "Kevin Gagante",
-        email: "kevin@gmail.com",
-      },
-      {
-        _id: 4,
-        username: "Oksana Tatsyak",
-        email: "oksana@gmail.com",
-      },
-    ],
-    schedule: [
-      {
-        _id: 5,
-        event_id: "event1",
-        title: "Event 1",
-        eventStart: "2023-10-19T19:48:53.871+00:00",
-        eventEnd: "2023-10-24T19:48:53.871+00:00",
-      },
-      {
-        _id: 6,
-        event_id: "event2",
-        title: "Event 2",
-        eventStart: "2023-10-20T19:48:53.871+00:00",
-        eventEnd: "2023-10-21T19:48:53.871+00:00",
-      },
-    ],
-  },
-  {
-    _id: 10,
-    name: "Sample Project 2",
-    description: "World of wonders 2",
-    address: "123 Main St, City ",
-    goal: "Goal of Project 1",
-    sponsors: [
-      {
-        _id: 1,
-        username: "Chandra Mohan",
-        email: "chandra@gmail.com",
-      },
-      {
-        _id: 2,
-        username: "Junel Balbin",
-        email: "junel@gmail.com",
-      },
-    ],
-    volunteers: [
-      {
-        _id: 3,
-        username: "Kevin Gagante",
-        email: "kevin@gmail.com",
-      },
-      {
-        _id: 4,
-        username: "Oksana Tatsyak",
-        email: "oksana@gmail.com",
-      },
-    ],
-    schedule: [
-      {
-        _id: 5,
-        event_id: "event1",
-        title: "Event 1",
-        eventStart: "2023-10-10T19:48:53.871+00:00",
-        eventEnd: "2023-10-19T19:48:53.871+00:00",
-      },
-      {
-        _id: 6,
-        event_id: "event2",
-        title: "Event 2",
-        eventStart: "2023-10-20T19:48:53.871+00:00",
-        eventEnd: "2023-10-25T19:48:53.871+00:00",
-      },
-    ],
-  },
-];
 
 export default Project;

@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -79,12 +78,15 @@ export default function DialogAddPost({row}) {
 
   const addPost = async (e) => {
     console.log(postText)
-    const mutationResponse = await createPost({ variables : 
+    await createPost({ variables : 
       {
         caption: postText,
         date: new Date()
       },
     })
+    if (error) {
+      console.log(error)
+    }
     setOpen(false);
   };
 
@@ -100,7 +102,7 @@ export default function DialogAddPost({row}) {
             autoFocus
             margin="dense"
             id="caption"
-            label="Title"
+            label="Post"
             type="text"
             fullWidth
             variant="standard"

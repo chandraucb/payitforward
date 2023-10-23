@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundAttachment: `fixed`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundAttachment: 'fixed',
     minHeight: '100vh',
     minWidth: '100vw',
     display: 'flex',
