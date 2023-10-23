@@ -86,3 +86,35 @@ mutation Mutation($email: String!, $password: String!) {
   }
 }
 `;
+
+export const REMOVE_SPONSOR = gql`
+mutation Mutation($sponsorId: ID!, $removeSponsorsId: ID!) {
+  removeSponsors(sponsorId: $sponsorId, id: $removeSponsorsId) {
+    _id
+  }
+}
+`;
+
+export const REMOVE_VOLUNTEER = gql`
+mutation RemoveVolunteer($removeVolunteerId: ID!, $volunteerId: ID!) {
+  removeVolunteer(id: $removeVolunteerId, volunteerId: $volunteerId) {
+    _id
+  }
+}
+`;
+
+export const ADD_SPONSOR = gql`
+mutation AddSponsors($addSponsorsId: ID!, $sponsorId: ID!) {
+  addSponsors(id: $addSponsorsId, sponsorId: $sponsorId) {
+    _id
+  }
+}
+`;
+
+export const ADD_VOLUNTEER = gql`
+mutation AddVolunteer($addVolunteerId: ID!, $volunteerId: ID!) {
+  addVolunteer(id: $addVolunteerId, volunteerId: $volunteerId) {
+    _id
+  }
+}
+`;

@@ -15,6 +15,16 @@ query Query {
 }
 `;
 
+
+export const QUERY_USERS = gql`
+query Users {
+  users {
+    username
+    _id
+  }
+}
+`;
+
 export const QUERY_GET_ORGANIZATION = gql`
 query Organization($organizationId: ID!) {
   organization(id: $organizationId) {

@@ -193,6 +193,60 @@ const resolvers = {
                 { _id: new Types.ObjectId(id) }
             );
         },
+
+        //update a project
+        addSponsors: async (parent, { id, sponsorId }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+
+            const project = await Project.findOneAndUpdate(
+                { _id: new Types.ObjectId(id) },
+                { $addToSet: { sponsors: [new Types.ObjectId(sponsorId)] } },
+                { new: true }
+            );
+            return project
+        },
+
+        //update a project
+        addVolunteer: async (parent, { id, volunteerId }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+            const project = await Project.findOneAndUpdate(
+                { _id: new Types.ObjectId(id) },
+                { $addToSet: { volunteers: [new Types.ObjectId(volunteerId)] } },
+                { new: true }
+            );
+            return project
+        },
+
+        //update a project
+        removeSponsors: async (parent, { id, sponsorId }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+
+            const project = await Project.findOneAndUpdate(
+                { _id: new Types.ObjectId(id) },
+                { $pull: { sponsors: new Types.ObjectId(sponsorId) } },
+                { new: true }
+            );
+            return project
+        },
+
+        //update a project
+        removeVolunteer: async (parent, { id, volunteerId }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+            const project = await Project.findOneAndUpdate(
+                { _id: new Types.ObjectId(id) },
+                { $pull: { volunteers: new Types.ObjectId(volunteerId) } },
+                { new: true }
+            );
+            return project
+        },
         //add a project
         addProject: async (parent, { name, description, address, goal }, context) => {
             if (!context.user) {
@@ -223,6 +277,8 @@ const resolvers = {
                 { new: true }
             );
         },
+
+
         //delete a project
         deleteProject: async (parent, { id }, context) => {
             if (!context.user) {
