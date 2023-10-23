@@ -9,7 +9,7 @@ const postSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    user_id: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,

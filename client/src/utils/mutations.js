@@ -50,6 +50,19 @@ mutation RemoveUserEvent($removeUserEventId: ID!) {
 }
 `;
 
+export const ADD_POST = gql`
+mutation AddPost($caption: String!, $date: String!) {
+  addPost(caption: $caption, date: $date) {
+    user {
+      username
+      email
+    }
+    date
+    caption
+    _id
+  }
+}
+`;
 
 export const ADD_USER = gql`
 mutation AddUser($username: String!, $email: String!, $password: String!) {

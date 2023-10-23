@@ -164,14 +164,14 @@ const resolvers = {
             const post = await Post.create({
                 caption,
                 date,
-                user_id: context.user._id
+                user: context.user._id
             });
 
             if (!post) {
                 throw new Error('Unable to create post');
             }
 
-            return post;
+            return post.populate('user');
         },
         //update a post
         updatePost: async (parent, { caption, date }, context) => {
