@@ -4,6 +4,11 @@ import { Typography, Card, CardContent, Avatar, Grid } from '@material-ui/core';
 import { DataGrid } from "@mui/x-data-grid";
 import Button from '@mui/material/Button';
 
+import DialogAddProjectUser from '../DialogAddProjectUser'
+
+import { useMutation } from '@apollo/client';
+import { REMOVE_SPONSOR , REMOVE_VOLUNTEER } from '../../utils/mutations';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -12,12 +17,20 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh', // Make the container at least full height
     padding: '20px',
   },
+
+  button: {
+    display:'flex', 
+    flexDirection:'row',
+    flexDirection: 'column',
+    alignItems: 'leftx',
+  },
+
   card: {
     backgroundColor: '#347068', // Green background color for cards
     color: 'white', // White text color for cards
     padding: '10px',
     margin: '10px',
-        alignItems: 'center', // Center horizontally
+    alignItems: 'center', // Center horizontally
 
   },
   header: {
@@ -48,12 +61,57 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Project = ({project}) => {
+const Project = ({project , refetchHandler, setState }) => {
   const classes = useStyles();
   console.log(project)
 
-  const handleDelete =(event, row) => {
+  const [removeSponsor, { errSponsor }] = useMutation(REMOVE_SPONSOR); 
+  const [removeVolunteer, { errVolunteer }] = useMutation(REMOVE_VOLUNTEER); 
 
+  const handleDelete = async (event, row) => {
+
+    console.log(row)
+
+    if (project.sponsors) {
+      const sponsor = project.sponsors.find(x => x._id === row._id)
+      if (sponsor) {
+        console.log("Found the sponsors :: " + JSON.stringify(sponsor))
+        const mutationResponse = await removeSponsor({
+          variables: {
+            "removeSponsorsId": project._id,
+            "sponsorId": row._id
+          },
+        });
+        if (errSponsor) {
+          console.log(errSponsor)
+        }
+      }
+    }
+
+    if (project.volunteers) {
+      const volunteer = project.volunteers.find(x => x._id === row._id)
+        if (volunteer) {
+          console.log("Found the volunteer :: " + JSON.stringify(volunteer))
+          const mutationResponse = await removeVolunteer({
+            variables: {
+              "removeVolunteerId": project._id,
+              "volunteerId": row._id
+            },
+          });
+          if (errVolunteer) {
+            console.log(errVolunteer)
+        }
+      }
+    }
+    refetchHandler()
+  }
+
+  const addSponsor =(event) => {
+    console.log(event.target)
+  }
+
+  const addVolunteer =(event) => {
+    console.log(event.target)
   }
 
   const columns = [
@@ -90,23 +148,8 @@ const Project = ({project}) => {
 
   return (
     <div className={classes.root}>
-
         <Card key={project._id} className={classes.card}>
-          <div>
-          <Button
-            onClick={(e) => handleDelete(e)}
-            variant="contained"
-          >
-            Add Sponsors
-          </Button>
-          &nbsp;&nbsp;
-          <Button
-            onClick={(e) => handleDelete(e)}
-            variant="contained"
-          >
-            Add Volunteers
-          </Button>
-          &nbsp;&nbsp;
+          <div className={classes.button}>
           <Button
             onClick={(e) => handleDelete(e)}
             variant="contained"
@@ -118,7 +161,7 @@ const Project = ({project}) => {
             <Typography variant="h2" component="h2" className={classes.title}>
               {project.name}
             </Typography>
-            <br/>
+
             <Typography variant="h2" className={classes.subtitle}>
               Schedule:
             </Typography>
@@ -132,14 +175,13 @@ const Project = ({project}) => {
                 </li>
               )):null}
             </ul>
-   
             <Typography variant="h2" className={classes.subtitle}>
               Sponsors:
             </Typography>
             <br/>
-            <Grid container spacing={2}>
+            <Grid id="sponsor" container spacing={2}>
               {project.sponsors?
-                  <DataGrid sx={{    backgroundColor: 'white', // Green background color for cards
+                  <DataGrid sx={{ backgroundColor: 'white', // Green background color for cards
             color: '#347068',}}
                     rows={project.sponsors}
                     columns={columns}
@@ -150,14 +192,14 @@ const Project = ({project}) => {
                     }}
                   />:<div/>}
             </Grid>
-            <br/>
+            <DialogAddProjectUser objectName="Sponsor" refetchHandler={refetchHandler} projectId={project._id}/>
             <Typography variant="subtitle1" className={classes.subtitle}>
               Volunteers:
             </Typography>
             <br/>
-            <Grid container spacing={2}>
+            <Grid id="volunteer" container spacing={2}>
               {project.volunteers?
-                  <DataGrid sx={{    backgroundColor: 'white', // Green background color for cards
+                  <DataGrid sx={{ backgroundColor: 'white', // Green background color for cards
             color: '#347068',}}
                     rows={project.volunteers}
                     columns={columns}
@@ -168,6 +210,7 @@ const Project = ({project}) => {
                     }}
                   />:<div/>}
             </Grid>
+            <DialogAddProjectUser objectName="Volunteer" refetchHandler={refetchHandler} projectId={project._id}/>
           </CardContent>
         </Card>
     </div>

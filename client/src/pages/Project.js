@@ -63,7 +63,10 @@ const useStyles = makeStyles((theme) => ({
 
     const [selectedProject, setSelectedProject] = useState(null);
 
-    const { loading, err, data } = useQuery(QUERY_PROJECTS);
+    const { loading , err , data , refetch } = useQuery(QUERY_PROJECTS);
+
+    console.log(refetch)
+
     if (loading) return <p>Loading...</p>;
     if (err) return <p>Error: {err.message}</p>;
 
@@ -124,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
       }}
       subheader={<li />}
     >
-            <ProjectComp key={selectedProject?selectedProject._id:data.projects[0]._id} project={selectedProject?selectedProject:data.projects[0]}/>         
+            <ProjectComp key={selectedProject?selectedProject._id:data.projects[0]._id} project={selectedProject?selectedProject:data.projects[0]} refetchHandler={refetch}  setState={setSelectedProject}/>         
           </List>
         </div>
 

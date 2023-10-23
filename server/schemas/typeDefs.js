@@ -74,6 +74,10 @@ type Mutation {
     addPost(caption: String!, date: String!): Post
     updatePost(id: ID!): Post
     deletePost(id: ID!): Post
+    removeSponsors(id:ID!, sponsorId:ID!): Project
+    removeVolunteer(id:ID!, volunteerId:ID!): Project
+    addSponsors(id:ID!, sponsorId:ID!): Project
+    addVolunteer(id:ID!, volunteerId:ID!): Project
     addProject(name: String!, description: String!, address: String!, goal: String!): Project
     updateProject(id: ID!): Project
     deleteProject(id: ID!): Project
