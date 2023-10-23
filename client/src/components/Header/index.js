@@ -45,7 +45,6 @@ const Header = ({ isLoggedIn, handleLoginLogout }) => {
     try {
       handleLoginLogout(!isLoggedIn)
       Auth.logout();
-      
       navigate('/');
     } catch (err) {
       console.error(err);

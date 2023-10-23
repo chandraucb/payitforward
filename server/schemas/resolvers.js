@@ -103,6 +103,28 @@ const resolvers = {
 
             return event;
         },
+
+        //add a post
+        addUserEvent: async (parent, { title, eventStart, eventEnd }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError('You need to be logged in!');
+            }
+            const event = await Event.create({title,eventStart,eventEnd});
+
+            if (!event) {
+                throw new Error('Unable to create Event');
+            }
+
+            console.log(JSON.stringify(event))
+
+            const user = await User.findOneAndUpdate(
+                { _id: new Types.ObjectId(context.user._id)},
+                { $addToSet: { events:[new Types.ObjectId(event._id)] } },
+                { new: true }
+            );
+
+            return event;
+        },
         //Add user event
         updateUserEvent: async (parent, { id }, context) => {
             if (!context.user) {
@@ -128,6 +150,10 @@ const resolvers = {
                 { new: true }
             ).populate('events');
 
+            const event = await Event.findOneAndDelete(
+                { _id: new Types.ObjectId(id) }
+            );
+
             return user;
         },
         //add a post
@@ -138,14 +164,14 @@ const resolvers = {
             const post = await Post.create({
                 caption,
                 date,
-                user_id: context.user._id
+                user: context.user._id
             });
 
             if (!post) {
                 throw new Error('Unable to create post');
             }
 
-            return post;
+            return post.populate('user');
         },
         //update a post
         updatePost: async (parent, { caption, date }, context) => {

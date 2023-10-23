@@ -8,6 +8,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useMutation } from '@apollo/client';
+import { ADD_USER_EVENT } from '../../utils/mutations';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,6 +63,32 @@ export default function DialogAddEvent() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  const [title, setTitle] = React.useState('');
+  const [startDate, setStartDate] = React.useState('');
+  const [endDate, setEndDate] = React.useState('');
+
+  const [createEvent, { error }] = useMutation(ADD_USER_EVENT); 
+
+  const handleCreate = async (event) => {
+    event.preventDefault();
+    console.log(title, startDate, endDate) 
+    const mutationResponse = await createEvent({
+      variables: { title: title, eventStart: startDate, eventEnd: endDate},
+    });
+    console.log(mutationResponse)
+    setOpen(false);
+    window.location.reload();
+  }
+
+  const handleChange =(e) => {
+    if (e.target.id === 'Title')
+        setTitle(e.target.value)
+    else if (e.target.id === 'startDate')
+        setStartDate(e.target.value)
+    else if (e.target.id === 'endDate')
+        setEndDate(e.target.value)
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -85,6 +114,7 @@ export default function DialogAddEvent() {
             fullWidth
             variant="standard"
             required
+            onChange={handleChange}
           />
           <DialogContentText sx={{ maxWidth:'80vw', width:'80vw' }}>
             Event Start
@@ -96,7 +126,7 @@ export default function DialogAddEvent() {
             type="date"
             fullWidth
             variant="standard"
-            
+            onChange={handleChange}
           />
           <DialogContentText>
             Event Date
@@ -108,11 +138,12 @@ export default function DialogAddEvent() {
             type="date"
             fullWidth
             variant="standard"
+            onChange={handleChange}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add Event</Button>
+          <Button onClick={handleCreate}>Add Event</Button>
         </DialogActions>
       </Dialog>
     </div>

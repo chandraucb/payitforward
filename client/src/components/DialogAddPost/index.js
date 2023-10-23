@@ -8,6 +8,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useMutation } from '@apollo/client';
+import { ADD_POST } from '../../utils/mutations';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -59,6 +62,8 @@ export default function DialogAddPost({row}) {
   const [open, setOpen] = React.useState(false);
   const [postText, setPost] = React.useState('');
 
+  const [createPost, { error }] = useMutation(ADD_POST); 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -72,8 +77,14 @@ export default function DialogAddPost({row}) {
     setPost(e.target.value);
   };
 
-  const addPost = () => {
+  const addPost = async (e) => {
     console.log(postText)
+    const mutationResponse = await createPost({ variables : 
+      {
+        caption: postText,
+        date: new Date()
+      },
+    })
     setOpen(false);
   };
 
@@ -89,17 +100,18 @@ export default function DialogAddPost({row}) {
             autoFocus
             margin="dense"
             id="caption"
-            label="Post"
+            label="Title"
             type="text"
             fullWidth
             variant="standard"
             required
+            onChange={handleChange}
           />
         </DialogContent>
          
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add Post</Button>
+          <Button onClick={addPost}>Add Post</Button>
         </DialogActions>
       </Dialog>
     </div>
