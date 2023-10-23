@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
 const Profile = () => {
   
   const classes = useStyles();
-  const { loading, err, data } = useQuery(QUERY_USER);
+  const { loading, err, data, refetch } = useQuery(QUERY_USER);
+
 
   if (loading) return <p>Loading...</p>;
   if (err) return <p>Error: {err.message}</p>;
@@ -62,11 +63,14 @@ const Profile = () => {
     return mapEvent
   })
 
+
+
   return (
     <div className={classes.container}>
-      <User className={classes.user} user={{user}}/> 
+      <User className={classes.user} refetchHanlder={refetch} user={{user}}/> 
       <EventCalender events={events}/>  
     </div>
   );
 };
 export default Profile;
+ 

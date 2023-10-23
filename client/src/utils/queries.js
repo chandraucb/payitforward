@@ -30,6 +30,7 @@ query Organization($organizationId: ID!) {
 }
 `
 
+
 export const QUERY_GET_ORGANIZATIONS = gql`
 query Query {
   organizations {
@@ -42,6 +43,25 @@ query Query {
       email
     }
     address
+  }
+}
+` 
+export const QUERY_PROJECTS = gql`
+query Projects {
+  projects {
+    volunteers {
+      username
+      email
+    }
+    sponsors {
+      username
+      email
+    }
+    name
+    goal
+    description
+    address
+    _id
   }
 }
 ` 

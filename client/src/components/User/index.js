@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function User({user}) {
+export default function User({user, refetchHanlder}) {
   const classes = useStyles();
 
   const [deleteEvent, { error }] = useMutation(REMOVE_USER_EVENT); 
@@ -67,7 +67,7 @@ export default function User({user}) {
         removeUserEventId:row._id },
     });
     console.log(error)
-    window.location.reload();
+    refetchHanlder()
   }
 
   const columns = [
@@ -164,7 +164,7 @@ export default function User({user}) {
         </Card>
       </div>
       <div>
-          <DialogAddEvent className={classes.card}/>
+          <DialogAddEvent className={classes.card} refetchHanlder={refetchHanlder}/>
       </div>
     </div>
   );

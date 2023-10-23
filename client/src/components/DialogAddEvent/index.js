@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 
-export default function DialogAddEvent() {
+export default function DialogAddEvent({refetchHanlder}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -77,7 +77,7 @@ export default function DialogAddEvent() {
     });
     console.log(mutationResponse)
     setOpen(false);
-    window.location.reload();
+    refetchHanlder() //Refresh query to update the screen
   }
 
   const handleChange =(e) => {
