@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Button } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import Auth from '../../utils/auth';
 import Logo from '../../images/pay_it_logo-transformed.png'
 

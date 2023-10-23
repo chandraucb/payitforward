@@ -52,15 +52,23 @@ query Projects {
     volunteers {
       username
       email
+      _id
     }
     sponsors {
       username
       email
+      _id
+    }
+    schedule {
+      title
+      eventStart
+      eventEnd
+      _id
     }
     name
-    goal
     description
     address
+    goal
     _id
   }
 }

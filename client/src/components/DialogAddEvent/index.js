@@ -75,6 +75,9 @@ export default function DialogAddEvent({refetchHanlder}) {
     const mutationResponse = await createEvent({
       variables: { title: title, eventStart: startDate, eventEnd: endDate},
     });
+    if (error) {
+      console.log(error)
+    }
     console.log(mutationResponse)
     setOpen(false);
     refetchHanlder() //Refresh query to update the screen
@@ -103,13 +106,13 @@ export default function DialogAddEvent({refetchHanlder}) {
         Add Event
       </Button>
       <Dialog  open={open} onClose={handleClose}>
-        <DialogTitle>Add Post</DialogTitle>
+        <DialogTitle>Add Event</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
             id="Title"
-            label="Title"
+            label="Event"
             type="text"
             fullWidth
             variant="standard"

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Button, Typography, Container, Card } from '@material-ui/core';
+import { Avatar, Button, Typography, Card } from '@material-ui/core';
 import DialogAddEvent from '../DialogAddEvent'
 import DialogAddPost from '../DialogAddPost'
 
@@ -62,7 +62,7 @@ export default function User({user, refetchHanlder}) {
   const handleDelete = async (event, row) => {
     event.preventDefault();
     console.log(row._id)
-    const mutationResponse = await deleteEvent({
+    await deleteEvent({
       variables: {
         removeUserEventId:row._id },
     });
